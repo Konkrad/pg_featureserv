@@ -1,216 +1,238 @@
-// Generated from CQLParser.g4 by ANTLR 4.7.
+// Code generated from CQLParser.g4 by ANTLR 4.13.2. DO NOT EDIT.
 
 package cql // CQLParser
 import (
 	"fmt"
-	"reflect"
 	"strconv"
+	"sync"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/antlr4-go/antlr/v4"
 )
 
 // Suppress unused import errors
 var _ = fmt.Printf
-var _ = reflect.Copy
 var _ = strconv.Itoa
-
-var parserATN = []uint16{
-	3, 24715, 42794, 33075, 47597, 16764, 15335, 30598, 22884, 3, 85, 322,
-	4, 2, 9, 2, 4, 3, 9, 3, 4, 4, 9, 4, 4, 5, 9, 5, 4, 6, 9, 6, 4, 7, 9, 7,
-	4, 8, 9, 8, 4, 9, 9, 9, 4, 10, 9, 10, 4, 11, 9, 11, 4, 12, 9, 12, 4, 13,
-	9, 13, 4, 14, 9, 14, 4, 15, 9, 15, 4, 16, 9, 16, 4, 17, 9, 17, 4, 18, 9,
-	18, 4, 19, 9, 19, 4, 20, 9, 20, 4, 21, 9, 21, 4, 22, 9, 22, 4, 23, 9, 23,
-	4, 24, 9, 24, 4, 25, 9, 25, 4, 26, 9, 26, 4, 27, 9, 27, 4, 28, 9, 28, 4,
-	29, 9, 29, 4, 30, 9, 30, 4, 31, 9, 31, 4, 32, 9, 32, 4, 33, 9, 33, 4, 34,
-	9, 34, 3, 2, 3, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
-	5, 3, 80, 10, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 7, 3, 88, 10, 3, 12,
-	3, 14, 3, 91, 11, 3, 3, 4, 3, 4, 5, 4, 95, 10, 4, 3, 5, 3, 5, 3, 5, 5,
-	5, 100, 10, 5, 3, 6, 3, 6, 3, 6, 3, 6, 3, 6, 5, 6, 107, 10, 6, 3, 7, 3,
-	7, 3, 7, 3, 7, 3, 8, 3, 8, 5, 8, 115, 10, 8, 3, 8, 3, 8, 3, 8, 3, 9, 3,
-	9, 5, 9, 122, 10, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 9, 3, 10, 3, 10, 5, 10,
-	131, 10, 10, 3, 10, 3, 10, 3, 10, 3, 10, 3, 10, 7, 10, 138, 10, 10, 12,
-	10, 14, 10, 141, 11, 10, 3, 10, 3, 10, 3, 10, 7, 10, 146, 10, 10, 12, 10,
-	14, 10, 149, 11, 10, 5, 10, 151, 10, 10, 3, 10, 3, 10, 3, 11, 3, 11, 3,
-	11, 5, 11, 158, 10, 11, 3, 11, 3, 11, 3, 12, 3, 12, 3, 12, 3, 12, 3, 12,
-	3, 12, 5, 12, 168, 10, 12, 3, 12, 3, 12, 3, 12, 7, 12, 173, 10, 12, 12,
-	12, 14, 12, 176, 11, 12, 3, 13, 3, 13, 3, 13, 3, 13, 3, 13, 5, 13, 183,
-	10, 13, 3, 14, 3, 14, 3, 15, 3, 15, 3, 16, 3, 16, 3, 17, 3, 17, 3, 18,
-	3, 18, 3, 19, 3, 19, 3, 19, 3, 19, 3, 19, 3, 19, 3, 19, 3, 20, 3, 20, 3,
-	20, 3, 20, 3, 20, 3, 20, 3, 20, 3, 20, 3, 20, 3, 21, 3, 21, 5, 21, 213,
-	10, 21, 3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 3, 22, 5, 22,
-	223, 10, 22, 3, 23, 3, 23, 3, 23, 3, 24, 3, 24, 3, 24, 3, 24, 3, 25, 3,
-	25, 3, 25, 3, 26, 3, 26, 3, 26, 3, 27, 3, 27, 3, 27, 3, 27, 7, 27, 242,
-	10, 27, 12, 27, 14, 27, 245, 11, 27, 3, 27, 3, 27, 3, 28, 3, 28, 3, 28,
-	3, 28, 3, 28, 7, 28, 254, 10, 28, 12, 28, 14, 28, 257, 11, 28, 3, 28, 3,
-	28, 3, 29, 3, 29, 3, 29, 3, 29, 3, 29, 7, 29, 266, 10, 29, 12, 29, 14,
-	29, 269, 11, 29, 3, 29, 3, 29, 3, 30, 3, 30, 3, 30, 3, 30, 3, 30, 7, 30,
-	278, 10, 30, 12, 30, 14, 30, 281, 11, 30, 3, 30, 3, 30, 3, 31, 3, 31, 3,
-	31, 3, 31, 3, 31, 7, 31, 290, 10, 31, 12, 31, 14, 31, 293, 11, 31, 3, 31,
-	3, 31, 3, 32, 3, 32, 3, 32, 3, 32, 3, 32, 3, 32, 3, 32, 3, 32, 3, 32, 3,
-	32, 3, 32, 3, 33, 3, 33, 3, 33, 3, 33, 7, 33, 312, 10, 33, 12, 33, 14,
-	33, 315, 11, 33, 3, 33, 3, 33, 3, 34, 3, 34, 3, 34, 3, 34, 2, 4, 4, 22,
-	35, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36,
-	38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62, 64, 66, 2, 3, 3, 2,
-	14, 15, 2, 326, 2, 68, 3, 2, 2, 2, 4, 79, 3, 2, 2, 2, 6, 94, 3, 2, 2, 2,
-	8, 99, 3, 2, 2, 2, 10, 106, 3, 2, 2, 2, 12, 108, 3, 2, 2, 2, 14, 112, 3,
-	2, 2, 2, 16, 119, 3, 2, 2, 2, 18, 128, 3, 2, 2, 2, 20, 154, 3, 2, 2, 2,
-	22, 167, 3, 2, 2, 2, 24, 182, 3, 2, 2, 2, 26, 184, 3, 2, 2, 2, 28, 186,
-	3, 2, 2, 2, 30, 188, 3, 2, 2, 2, 32, 190, 3, 2, 2, 2, 34, 192, 3, 2, 2,
-	2, 36, 194, 3, 2, 2, 2, 38, 201, 3, 2, 2, 2, 40, 212, 3, 2, 2, 2, 42, 222,
-	3, 2, 2, 2, 44, 224, 3, 2, 2, 2, 46, 227, 3, 2, 2, 2, 48, 231, 3, 2, 2,
-	2, 50, 234, 3, 2, 2, 2, 52, 237, 3, 2, 2, 2, 54, 248, 3, 2, 2, 2, 56, 260,
-	3, 2, 2, 2, 58, 272, 3, 2, 2, 2, 60, 284, 3, 2, 2, 2, 62, 296, 3, 2, 2,
-	2, 64, 307, 3, 2, 2, 2, 66, 318, 3, 2, 2, 2, 68, 69, 5, 4, 3, 2, 69, 70,
-	7, 2, 2, 3, 70, 3, 3, 2, 2, 2, 71, 72, 8, 3, 1, 2, 72, 73, 7, 44, 2, 2,
-	73, 74, 5, 4, 3, 2, 74, 75, 7, 45, 2, 2, 75, 80, 3, 2, 2, 2, 76, 77, 7,
-	13, 2, 2, 77, 80, 5, 4, 3, 4, 78, 80, 5, 6, 4, 2, 79, 71, 3, 2, 2, 2, 79,
-	76, 3, 2, 2, 2, 79, 78, 3, 2, 2, 2, 80, 89, 3, 2, 2, 2, 81, 82, 12, 6,
-	2, 2, 82, 83, 7, 11, 2, 2, 83, 88, 5, 4, 3, 7, 84, 85, 12, 5, 2, 2, 85,
-	86, 7, 12, 2, 2, 86, 88, 5, 4, 3, 6, 87, 81, 3, 2, 2, 2, 87, 84, 3, 2,
-	2, 2, 88, 91, 3, 2, 2, 2, 89, 87, 3, 2, 2, 2, 89, 90, 3, 2, 2, 2, 90, 5,
-	3, 2, 2, 2, 91, 89, 3, 2, 2, 2, 92, 95, 5, 8, 5, 2, 93, 95, 5, 32, 17,
-	2, 94, 92, 3, 2, 2, 2, 94, 93, 3, 2, 2, 2, 95, 7, 3, 2, 2, 2, 96, 100,
-	5, 10, 6, 2, 97, 100, 5, 36, 19, 2, 98, 100, 5, 38, 20, 2, 99, 96, 3, 2,
-	2, 2, 99, 97, 3, 2, 2, 2, 99, 98, 3, 2, 2, 2, 100, 9, 3, 2, 2, 2, 101,
-	107, 5, 12, 7, 2, 102, 107, 5, 14, 8, 2, 103, 107, 5, 16, 9, 2, 104, 107,
-	5, 18, 10, 2, 105, 107, 5, 20, 11, 2, 106, 101, 3, 2, 2, 2, 106, 102, 3,
-	2, 2, 2, 106, 103, 3, 2, 2, 2, 106, 104, 3, 2, 2, 2, 106, 105, 3, 2, 2,
-	2, 107, 11, 3, 2, 2, 2, 108, 109, 5, 22, 12, 2, 109, 110, 7, 3, 2, 2, 110,
-	111, 5, 22, 12, 2, 111, 13, 3, 2, 2, 2, 112, 114, 5, 26, 14, 2, 113, 115,
-	7, 13, 2, 2, 114, 113, 3, 2, 2, 2, 114, 115, 3, 2, 2, 2, 115, 116, 3, 2,
-	2, 2, 116, 117, 9, 2, 2, 2, 117, 118, 5, 28, 15, 2, 118, 15, 3, 2, 2, 2,
-	119, 121, 5, 22, 12, 2, 120, 122, 7, 13, 2, 2, 121, 120, 3, 2, 2, 2, 121,
-	122, 3, 2, 2, 2, 122, 123, 3, 2, 2, 2, 123, 124, 7, 16, 2, 2, 124, 125,
-	5, 22, 12, 2, 125, 126, 7, 11, 2, 2, 126, 127, 5, 22, 12, 2, 127, 17, 3,
-	2, 2, 2, 128, 130, 5, 26, 14, 2, 129, 131, 7, 13, 2, 2, 130, 129, 3, 2,
-	2, 2, 130, 131, 3, 2, 2, 2, 131, 132, 3, 2, 2, 2, 132, 133, 7, 19, 2, 2,
-	133, 150, 7, 44, 2, 2, 134, 139, 5, 28, 15, 2, 135, 136, 7, 50, 2, 2, 136,
-	138, 5, 28, 15, 2, 137, 135, 3, 2, 2, 2, 138, 141, 3, 2, 2, 2, 139, 137,
-	3, 2, 2, 2, 139, 140, 3, 2, 2, 2, 140, 151, 3, 2, 2, 2, 141, 139, 3, 2,
-	2, 2, 142, 147, 5, 30, 16, 2, 143, 144, 7, 50, 2, 2, 144, 146, 5, 30, 16,
-	2, 145, 143, 3, 2, 2, 2, 146, 149, 3, 2, 2, 2, 147, 145, 3, 2, 2, 2, 147,
-	148, 3, 2, 2, 2, 148, 151, 3, 2, 2, 2, 149, 147, 3, 2, 2, 2, 150, 134,
-	3, 2, 2, 2, 150, 142, 3, 2, 2, 2, 151, 152, 3, 2, 2, 2, 152, 153, 7, 45,
-	2, 2, 153, 19, 3, 2, 2, 2, 154, 155, 5, 26, 14, 2, 155, 157, 7, 17, 2,
-	2, 156, 158, 7, 13, 2, 2, 157, 156, 3, 2, 2, 2, 157, 158, 3, 2, 2, 2, 158,
-	159, 3, 2, 2, 2, 159, 160, 7, 18, 2, 2, 160, 21, 3, 2, 2, 2, 161, 162,
-	8, 12, 1, 2, 162, 168, 5, 24, 13, 2, 163, 164, 7, 44, 2, 2, 164, 165, 5,
-	22, 12, 2, 165, 166, 7, 45, 2, 2, 166, 168, 3, 2, 2, 2, 167, 161, 3, 2,
-	2, 2, 167, 163, 3, 2, 2, 2, 168, 174, 3, 2, 2, 2, 169, 170, 12, 3, 2, 2,
-	170, 171, 7, 20, 2, 2, 171, 173, 5, 22, 12, 4, 172, 169, 3, 2, 2, 2, 173,
-	176, 3, 2, 2, 2, 174, 172, 3, 2, 2, 2, 174, 175, 3, 2, 2, 2, 175, 23, 3,
-	2, 2, 2, 176, 174, 3, 2, 2, 2, 177, 183, 5, 26, 14, 2, 178, 183, 5, 28,
-	15, 2, 179, 183, 5, 30, 16, 2, 180, 183, 5, 32, 17, 2, 181, 183, 5, 34,
-	18, 2, 182, 177, 3, 2, 2, 2, 182, 178, 3, 2, 2, 2, 182, 179, 3, 2, 2, 2,
-	182, 180, 3, 2, 2, 2, 182, 181, 3, 2, 2, 2, 183, 25, 3, 2, 2, 2, 184, 185,
-	7, 32, 2, 2, 185, 27, 3, 2, 2, 2, 186, 187, 7, 84, 2, 2, 187, 29, 3, 2,
-	2, 2, 188, 189, 7, 31, 2, 2, 189, 31, 3, 2, 2, 2, 190, 191, 7, 10, 2, 2,
-	191, 33, 3, 2, 2, 2, 192, 193, 7, 71, 2, 2, 193, 35, 3, 2, 2, 2, 194, 195,
-	7, 21, 2, 2, 195, 196, 7, 44, 2, 2, 196, 197, 5, 40, 21, 2, 197, 198, 7,
-	50, 2, 2, 198, 199, 5, 40, 21, 2, 199, 200, 7, 45, 2, 2, 200, 37, 3, 2,
-	2, 2, 201, 202, 7, 22, 2, 2, 202, 203, 7, 44, 2, 2, 203, 204, 5, 40, 21,
-	2, 204, 205, 7, 50, 2, 2, 205, 206, 5, 40, 21, 2, 206, 207, 7, 50, 2, 2,
-	207, 208, 7, 31, 2, 2, 208, 209, 7, 45, 2, 2, 209, 39, 3, 2, 2, 2, 210,
-	213, 5, 26, 14, 2, 211, 213, 5, 42, 22, 2, 212, 210, 3, 2, 2, 2, 212, 211,
-	3, 2, 2, 2, 213, 41, 3, 2, 2, 2, 214, 223, 5, 44, 23, 2, 215, 223, 5, 48,
-	25, 2, 216, 223, 5, 50, 26, 2, 217, 223, 5, 54, 28, 2, 218, 223, 5, 56,
-	29, 2, 219, 223, 5, 58, 30, 2, 220, 223, 5, 60, 31, 2, 221, 223, 5, 62,
-	32, 2, 222, 214, 3, 2, 2, 2, 222, 215, 3, 2, 2, 2, 222, 216, 3, 2, 2, 2,
-	222, 217, 3, 2, 2, 2, 222, 218, 3, 2, 2, 2, 222, 219, 3, 2, 2, 2, 222,
-	220, 3, 2, 2, 2, 222, 221, 3, 2, 2, 2, 223, 43, 3, 2, 2, 2, 224, 225, 7,
-	23, 2, 2, 225, 226, 5, 46, 24, 2, 226, 45, 3, 2, 2, 2, 227, 228, 7, 44,
-	2, 2, 228, 229, 5, 66, 34, 2, 229, 230, 7, 45, 2, 2, 230, 47, 3, 2, 2,
-	2, 231, 232, 7, 24, 2, 2, 232, 233, 5, 64, 33, 2, 233, 49, 3, 2, 2, 2,
-	234, 235, 7, 25, 2, 2, 235, 236, 5, 52, 27, 2, 236, 51, 3, 2, 2, 2, 237,
-	238, 7, 44, 2, 2, 238, 243, 5, 64, 33, 2, 239, 240, 7, 50, 2, 2, 240, 242,
-	5, 64, 33, 2, 241, 239, 3, 2, 2, 2, 242, 245, 3, 2, 2, 2, 243, 241, 3,
-	2, 2, 2, 243, 244, 3, 2, 2, 2, 244, 246, 3, 2, 2, 2, 245, 243, 3, 2, 2,
-	2, 246, 247, 7, 45, 2, 2, 247, 53, 3, 2, 2, 2, 248, 249, 7, 26, 2, 2, 249,
-	250, 7, 44, 2, 2, 250, 255, 5, 46, 24, 2, 251, 252, 7, 50, 2, 2, 252, 254,
-	5, 46, 24, 2, 253, 251, 3, 2, 2, 2, 254, 257, 3, 2, 2, 2, 255, 253, 3,
-	2, 2, 2, 255, 256, 3, 2, 2, 2, 256, 258, 3, 2, 2, 2, 257, 255, 3, 2, 2,
-	2, 258, 259, 7, 45, 2, 2, 259, 55, 3, 2, 2, 2, 260, 261, 7, 27, 2, 2, 261,
-	262, 7, 44, 2, 2, 262, 267, 5, 64, 33, 2, 263, 264, 7, 50, 2, 2, 264, 266,
-	5, 64, 33, 2, 265, 263, 3, 2, 2, 2, 266, 269, 3, 2, 2, 2, 267, 265, 3,
-	2, 2, 2, 267, 268, 3, 2, 2, 2, 268, 270, 3, 2, 2, 2, 269, 267, 3, 2, 2,
-	2, 270, 271, 7, 45, 2, 2, 271, 57, 3, 2, 2, 2, 272, 273, 7, 28, 2, 2, 273,
-	274, 7, 44, 2, 2, 274, 279, 5, 52, 27, 2, 275, 276, 7, 50, 2, 2, 276, 278,
-	5, 52, 27, 2, 277, 275, 3, 2, 2, 2, 278, 281, 3, 2, 2, 2, 279, 277, 3,
-	2, 2, 2, 279, 280, 3, 2, 2, 2, 280, 282, 3, 2, 2, 2, 281, 279, 3, 2, 2,
-	2, 282, 283, 7, 45, 2, 2, 283, 59, 3, 2, 2, 2, 284, 285, 7, 29, 2, 2, 285,
-	286, 7, 44, 2, 2, 286, 291, 5, 42, 22, 2, 287, 288, 7, 50, 2, 2, 288, 290,
-	5, 42, 22, 2, 289, 287, 3, 2, 2, 2, 290, 293, 3, 2, 2, 2, 291, 289, 3,
-	2, 2, 2, 291, 292, 3, 2, 2, 2, 292, 294, 3, 2, 2, 2, 293, 291, 3, 2, 2,
-	2, 294, 295, 7, 45, 2, 2, 295, 61, 3, 2, 2, 2, 296, 297, 7, 30, 2, 2, 297,
-	298, 7, 44, 2, 2, 298, 299, 7, 31, 2, 2, 299, 300, 7, 50, 2, 2, 300, 301,
-	7, 31, 2, 2, 301, 302, 7, 50, 2, 2, 302, 303, 7, 31, 2, 2, 303, 304, 7,
-	50, 2, 2, 304, 305, 7, 31, 2, 2, 305, 306, 7, 45, 2, 2, 306, 63, 3, 2,
-	2, 2, 307, 308, 7, 44, 2, 2, 308, 313, 5, 66, 34, 2, 309, 310, 7, 50, 2,
-	2, 310, 312, 5, 66, 34, 2, 311, 309, 3, 2, 2, 2, 312, 315, 3, 2, 2, 2,
-	313, 311, 3, 2, 2, 2, 313, 314, 3, 2, 2, 2, 314, 316, 3, 2, 2, 2, 315,
-	313, 3, 2, 2, 2, 316, 317, 7, 45, 2, 2, 317, 65, 3, 2, 2, 2, 318, 319,
-	7, 31, 2, 2, 319, 320, 7, 31, 2, 2, 320, 67, 3, 2, 2, 2, 26, 79, 87, 89,
-	94, 99, 106, 114, 121, 130, 139, 147, 150, 157, 167, 174, 182, 212, 222,
-	243, 255, 267, 279, 291, 313,
-}
-var deserializer = antlr.NewATNDeserializer(nil)
-var deserializedATN = deserializer.DeserializeFromUInt16(parserATN)
-
-var literalNames = []string{
-	"", "", "'<'", "'='", "'>'", "", "", "", "", "", "", "", "", "", "", "",
-	"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
-	"", "'#'", "'$'", "'_'", "'\"'", "'%'", "'&'", "", "'('", "')'", "'['",
-	"']'", "'*'", "'+'", "','", "'-'", "'.'", "'/'", "'^'", "'||'", "':'",
-	"';'", "'?'", "'|'", "", "", "", "", "", "", "", "", "", "", "", "", "",
-	"", "", "", "", "", "", "", "", "", "", "", "", "''''",
-}
-var symbolicNames = []string{
-	"", "ComparisonOperator", "LT", "EQ", "GT", "NEQ", "GTEQ", "LTEQ", "BooleanLiteral",
-	"AND", "OR", "NOT", "LIKE", "ILIKE", "BETWEEN", "IS", "NULL", "IN", "ArithmeticOperator",
-	"SpatialOperator", "DistanceOperator", "POINT", "LINESTRING", "POLYGON",
-	"MULTIPOINT", "MULTILINESTRING", "MULTIPOLYGON", "GEOMETRYCOLLECTION",
-	"ENVELOPE", "NumericLiteral", "Identifier", "IdentifierStart", "IdentifierPart",
-	"ALPHA", "DIGIT", "OCTOTHORP", "DOLLAR", "UNDERSCORE", "DOUBLEQUOTE", "PERCENT",
-	"AMPERSAND", "QUOTE", "LEFTPAREN", "RIGHTPAREN", "LEFTSQUAREBRACKET", "RIGHTSQUAREBRACKET",
-	"ASTERISK", "PLUS", "COMMA", "MINUS", "PERIOD", "SOLIDUS", "CARET", "CONCAT",
-	"COLON", "SEMICOLON", "QUESTIONMARK", "VERTICALBAR", "BIT", "HEXIT", "UnsignedNumericLiteral",
-	"SignedNumericLiteral", "ExactNumericLiteral", "ApproximateNumericLiteral",
-	"Mantissa", "Exponent", "SignedInteger", "UnsignedInteger", "Sign", "TemporalLiteral",
-	"Instant", "FullDate", "DateYear", "DateMonth", "DateDay", "UtcTime", "TimeZoneOffset",
-	"TimeHour", "TimeMinute", "TimeSecond", "NOW", "WS", "CharacterStringLiteral",
-	"QuotedQuote",
-}
-
-var ruleNames = []string{
-	"cqlFilter", "booleanExpression", "booleanTerm", "predicate", "comparisonPredicate",
-	"binaryComparisonPredicate", "isLikePredicate", "isBetweenPredicate", "isInListPredicate",
-	"isNullPredicate", "scalarExpression", "scalarValue", "propertyName", "characterLiteral",
-	"numericLiteral", "booleanLiteral", "temporalLiteral", "spatialPredicate",
-	"distancePredicate", "geomExpression", "geomLiteral", "point", "pointList",
-	"linestring", "polygon", "polygonDef", "multiPoint", "multiLinestring",
-	"multiPolygon", "geometryCollection", "envelope", "coordList", "coordinate",
-}
-var decisionToDFA = make([]*antlr.DFA, len(deserializedATN.DecisionToState))
-
-func init() {
-	for index, ds := range deserializedATN.DecisionToState {
-		decisionToDFA[index] = antlr.NewDFA(ds, index)
-	}
-}
+var _ = sync.Once{}
 
 type CQLParser struct {
 	*antlr.BaseParser
 }
 
+var CQLParserParserStaticData struct {
+	once                   sync.Once
+	serializedATN          []int32
+	LiteralNames           []string
+	SymbolicNames          []string
+	RuleNames              []string
+	PredictionContextCache *antlr.PredictionContextCache
+	atn                    *antlr.ATN
+	decisionToDFA          []*antlr.DFA
+}
+
+func cqlparserParserInit() {
+	staticData := &CQLParserParserStaticData
+	staticData.LiteralNames = []string{
+		"", "", "'<'", "'='", "'>'", "", "", "", "", "", "", "", "", "", "",
+		"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+		"", "", "", "'#'", "'$'", "'_'", "'\"'", "'%'", "'&'", "", "'('", "')'",
+		"'['", "']'", "'*'", "'+'", "','", "'-'", "'.'", "'/'", "'^'", "'||'",
+		"':'", "';'", "'?'", "'|'", "", "", "", "", "", "", "", "", "", "",
+		"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "''''",
+	}
+	staticData.SymbolicNames = []string{
+		"", "ComparisonOperator", "LT", "EQ", "GT", "NEQ", "GTEQ", "LTEQ", "BooleanLiteral",
+		"AND", "OR", "NOT", "LIKE", "ILIKE", "BETWEEN", "IS", "NULL", "IN",
+		"ArithmeticOperator", "SpatialOperator", "DistanceOperator", "POINT",
+		"LINESTRING", "POLYGON", "MULTIPOINT", "MULTILINESTRING", "MULTIPOLYGON",
+		"GEOMETRYCOLLECTION", "ENVELOPE", "NumericLiteral", "Identifier", "IdentifierStart",
+		"IdentifierPart", "ALPHA", "DIGIT", "OCTOTHORP", "DOLLAR", "UNDERSCORE",
+		"DOUBLEQUOTE", "PERCENT", "AMPERSAND", "QUOTE", "LEFTPAREN", "RIGHTPAREN",
+		"LEFTSQUAREBRACKET", "RIGHTSQUAREBRACKET", "ASTERISK", "PLUS", "COMMA",
+		"MINUS", "PERIOD", "SOLIDUS", "CARET", "CONCAT", "COLON", "SEMICOLON",
+		"QUESTIONMARK", "VERTICALBAR", "BIT", "HEXIT", "UnsignedNumericLiteral",
+		"SignedNumericLiteral", "ExactNumericLiteral", "ApproximateNumericLiteral",
+		"Mantissa", "Exponent", "SignedInteger", "UnsignedInteger", "Sign",
+		"TemporalLiteral", "Instant", "FullDate", "DateYear", "DateMonth", "DateDay",
+		"UtcTime", "TimeZoneOffset", "TimeHour", "TimeMinute", "TimeSecond",
+		"NOW", "WS", "CharacterStringLiteral", "QuotedQuote",
+	}
+	staticData.RuleNames = []string{
+		"cqlFilter", "booleanExpression", "booleanTerm", "predicate", "comparisonPredicate",
+		"binaryComparisonPredicate", "isLikePredicate", "isBetweenPredicate",
+		"isInListPredicate", "isNullPredicate", "scalarExpression", "scalarValue",
+		"propertyName", "characterLiteral", "numericLiteral", "booleanLiteral",
+		"temporalLiteral", "spatialPredicate", "distancePredicate", "geomExpression",
+		"geomLiteral", "point", "pointList", "linestring", "polygon", "polygonDef",
+		"multiPoint", "multiLinestring", "multiPolygon", "geometryCollection",
+		"envelope", "coordList", "coordinate",
+	}
+	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
+	staticData.serializedATN = []int32{
+		4, 1, 83, 320, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
+		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
+		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
+		21, 7, 21, 2, 22, 7, 22, 2, 23, 7, 23, 2, 24, 7, 24, 2, 25, 7, 25, 2, 26,
+		7, 26, 2, 27, 7, 27, 2, 28, 7, 28, 2, 29, 7, 29, 2, 30, 7, 30, 2, 31, 7,
+		31, 2, 32, 7, 32, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+		1, 1, 1, 1, 3, 1, 78, 8, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 5, 1, 86,
+		8, 1, 10, 1, 12, 1, 89, 9, 1, 1, 2, 1, 2, 3, 2, 93, 8, 2, 1, 3, 1, 3, 1,
+		3, 3, 3, 98, 8, 3, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 3, 4, 105, 8, 4, 1, 5,
+		1, 5, 1, 5, 1, 5, 1, 6, 1, 6, 3, 6, 113, 8, 6, 1, 6, 1, 6, 1, 6, 1, 7,
+		1, 7, 3, 7, 120, 8, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 8, 1, 8, 3, 8,
+		129, 8, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 5, 8, 136, 8, 8, 10, 8, 12, 8,
+		139, 9, 8, 1, 8, 1, 8, 1, 8, 5, 8, 144, 8, 8, 10, 8, 12, 8, 147, 9, 8,
+		3, 8, 149, 8, 8, 1, 8, 1, 8, 1, 9, 1, 9, 1, 9, 3, 9, 156, 8, 9, 1, 9, 1,
+		9, 1, 10, 1, 10, 1, 10, 1, 10, 1, 10, 1, 10, 3, 10, 166, 8, 10, 1, 10,
+		1, 10, 1, 10, 5, 10, 171, 8, 10, 10, 10, 12, 10, 174, 9, 10, 1, 11, 1,
+		11, 1, 11, 1, 11, 1, 11, 3, 11, 181, 8, 11, 1, 12, 1, 12, 1, 13, 1, 13,
+		1, 14, 1, 14, 1, 15, 1, 15, 1, 16, 1, 16, 1, 17, 1, 17, 1, 17, 1, 17, 1,
+		17, 1, 17, 1, 17, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18, 1, 18,
+		1, 18, 1, 19, 1, 19, 3, 19, 211, 8, 19, 1, 20, 1, 20, 1, 20, 1, 20, 1,
+		20, 1, 20, 1, 20, 1, 20, 3, 20, 221, 8, 20, 1, 21, 1, 21, 1, 21, 1, 22,
+		1, 22, 1, 22, 1, 22, 1, 23, 1, 23, 1, 23, 1, 24, 1, 24, 1, 24, 1, 25, 1,
+		25, 1, 25, 1, 25, 5, 25, 240, 8, 25, 10, 25, 12, 25, 243, 9, 25, 1, 25,
+		1, 25, 1, 26, 1, 26, 1, 26, 1, 26, 1, 26, 5, 26, 252, 8, 26, 10, 26, 12,
+		26, 255, 9, 26, 1, 26, 1, 26, 1, 27, 1, 27, 1, 27, 1, 27, 1, 27, 5, 27,
+		264, 8, 27, 10, 27, 12, 27, 267, 9, 27, 1, 27, 1, 27, 1, 28, 1, 28, 1,
+		28, 1, 28, 1, 28, 5, 28, 276, 8, 28, 10, 28, 12, 28, 279, 9, 28, 1, 28,
+		1, 28, 1, 29, 1, 29, 1, 29, 1, 29, 1, 29, 5, 29, 288, 8, 29, 10, 29, 12,
+		29, 291, 9, 29, 1, 29, 1, 29, 1, 30, 1, 30, 1, 30, 1, 30, 1, 30, 1, 30,
+		1, 30, 1, 30, 1, 30, 1, 30, 1, 30, 1, 31, 1, 31, 1, 31, 1, 31, 5, 31, 310,
+		8, 31, 10, 31, 12, 31, 313, 9, 31, 1, 31, 1, 31, 1, 32, 1, 32, 1, 32, 1,
+		32, 0, 2, 2, 20, 33, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26,
+		28, 30, 32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 62,
+		64, 0, 1, 1, 0, 12, 13, 324, 0, 66, 1, 0, 0, 0, 2, 77, 1, 0, 0, 0, 4, 92,
+		1, 0, 0, 0, 6, 97, 1, 0, 0, 0, 8, 104, 1, 0, 0, 0, 10, 106, 1, 0, 0, 0,
+		12, 110, 1, 0, 0, 0, 14, 117, 1, 0, 0, 0, 16, 126, 1, 0, 0, 0, 18, 152,
+		1, 0, 0, 0, 20, 165, 1, 0, 0, 0, 22, 180, 1, 0, 0, 0, 24, 182, 1, 0, 0,
+		0, 26, 184, 1, 0, 0, 0, 28, 186, 1, 0, 0, 0, 30, 188, 1, 0, 0, 0, 32, 190,
+		1, 0, 0, 0, 34, 192, 1, 0, 0, 0, 36, 199, 1, 0, 0, 0, 38, 210, 1, 0, 0,
+		0, 40, 220, 1, 0, 0, 0, 42, 222, 1, 0, 0, 0, 44, 225, 1, 0, 0, 0, 46, 229,
+		1, 0, 0, 0, 48, 232, 1, 0, 0, 0, 50, 235, 1, 0, 0, 0, 52, 246, 1, 0, 0,
+		0, 54, 258, 1, 0, 0, 0, 56, 270, 1, 0, 0, 0, 58, 282, 1, 0, 0, 0, 60, 294,
+		1, 0, 0, 0, 62, 305, 1, 0, 0, 0, 64, 316, 1, 0, 0, 0, 66, 67, 3, 2, 1,
+		0, 67, 68, 5, 0, 0, 1, 68, 1, 1, 0, 0, 0, 69, 70, 6, 1, -1, 0, 70, 71,
+		5, 42, 0, 0, 71, 72, 3, 2, 1, 0, 72, 73, 5, 43, 0, 0, 73, 78, 1, 0, 0,
+		0, 74, 75, 5, 11, 0, 0, 75, 78, 3, 2, 1, 2, 76, 78, 3, 4, 2, 0, 77, 69,
+		1, 0, 0, 0, 77, 74, 1, 0, 0, 0, 77, 76, 1, 0, 0, 0, 78, 87, 1, 0, 0, 0,
+		79, 80, 10, 4, 0, 0, 80, 81, 5, 9, 0, 0, 81, 86, 3, 2, 1, 5, 82, 83, 10,
+		3, 0, 0, 83, 84, 5, 10, 0, 0, 84, 86, 3, 2, 1, 4, 85, 79, 1, 0, 0, 0, 85,
+		82, 1, 0, 0, 0, 86, 89, 1, 0, 0, 0, 87, 85, 1, 0, 0, 0, 87, 88, 1, 0, 0,
+		0, 88, 3, 1, 0, 0, 0, 89, 87, 1, 0, 0, 0, 90, 93, 3, 6, 3, 0, 91, 93, 3,
+		30, 15, 0, 92, 90, 1, 0, 0, 0, 92, 91, 1, 0, 0, 0, 93, 5, 1, 0, 0, 0, 94,
+		98, 3, 8, 4, 0, 95, 98, 3, 34, 17, 0, 96, 98, 3, 36, 18, 0, 97, 94, 1,
+		0, 0, 0, 97, 95, 1, 0, 0, 0, 97, 96, 1, 0, 0, 0, 98, 7, 1, 0, 0, 0, 99,
+		105, 3, 10, 5, 0, 100, 105, 3, 12, 6, 0, 101, 105, 3, 14, 7, 0, 102, 105,
+		3, 16, 8, 0, 103, 105, 3, 18, 9, 0, 104, 99, 1, 0, 0, 0, 104, 100, 1, 0,
+		0, 0, 104, 101, 1, 0, 0, 0, 104, 102, 1, 0, 0, 0, 104, 103, 1, 0, 0, 0,
+		105, 9, 1, 0, 0, 0, 106, 107, 3, 20, 10, 0, 107, 108, 5, 1, 0, 0, 108,
+		109, 3, 20, 10, 0, 109, 11, 1, 0, 0, 0, 110, 112, 3, 24, 12, 0, 111, 113,
+		5, 11, 0, 0, 112, 111, 1, 0, 0, 0, 112, 113, 1, 0, 0, 0, 113, 114, 1, 0,
+		0, 0, 114, 115, 7, 0, 0, 0, 115, 116, 3, 26, 13, 0, 116, 13, 1, 0, 0, 0,
+		117, 119, 3, 20, 10, 0, 118, 120, 5, 11, 0, 0, 119, 118, 1, 0, 0, 0, 119,
+		120, 1, 0, 0, 0, 120, 121, 1, 0, 0, 0, 121, 122, 5, 14, 0, 0, 122, 123,
+		3, 20, 10, 0, 123, 124, 5, 9, 0, 0, 124, 125, 3, 20, 10, 0, 125, 15, 1,
+		0, 0, 0, 126, 128, 3, 24, 12, 0, 127, 129, 5, 11, 0, 0, 128, 127, 1, 0,
+		0, 0, 128, 129, 1, 0, 0, 0, 129, 130, 1, 0, 0, 0, 130, 131, 5, 17, 0, 0,
+		131, 148, 5, 42, 0, 0, 132, 137, 3, 26, 13, 0, 133, 134, 5, 48, 0, 0, 134,
+		136, 3, 26, 13, 0, 135, 133, 1, 0, 0, 0, 136, 139, 1, 0, 0, 0, 137, 135,
+		1, 0, 0, 0, 137, 138, 1, 0, 0, 0, 138, 149, 1, 0, 0, 0, 139, 137, 1, 0,
+		0, 0, 140, 145, 3, 28, 14, 0, 141, 142, 5, 48, 0, 0, 142, 144, 3, 28, 14,
+		0, 143, 141, 1, 0, 0, 0, 144, 147, 1, 0, 0, 0, 145, 143, 1, 0, 0, 0, 145,
+		146, 1, 0, 0, 0, 146, 149, 1, 0, 0, 0, 147, 145, 1, 0, 0, 0, 148, 132,
+		1, 0, 0, 0, 148, 140, 1, 0, 0, 0, 149, 150, 1, 0, 0, 0, 150, 151, 5, 43,
+		0, 0, 151, 17, 1, 0, 0, 0, 152, 153, 3, 24, 12, 0, 153, 155, 5, 15, 0,
+		0, 154, 156, 5, 11, 0, 0, 155, 154, 1, 0, 0, 0, 155, 156, 1, 0, 0, 0, 156,
+		157, 1, 0, 0, 0, 157, 158, 5, 16, 0, 0, 158, 19, 1, 0, 0, 0, 159, 160,
+		6, 10, -1, 0, 160, 166, 3, 22, 11, 0, 161, 162, 5, 42, 0, 0, 162, 163,
+		3, 20, 10, 0, 163, 164, 5, 43, 0, 0, 164, 166, 1, 0, 0, 0, 165, 159, 1,
+		0, 0, 0, 165, 161, 1, 0, 0, 0, 166, 172, 1, 0, 0, 0, 167, 168, 10, 1, 0,
+		0, 168, 169, 5, 18, 0, 0, 169, 171, 3, 20, 10, 2, 170, 167, 1, 0, 0, 0,
+		171, 174, 1, 0, 0, 0, 172, 170, 1, 0, 0, 0, 172, 173, 1, 0, 0, 0, 173,
+		21, 1, 0, 0, 0, 174, 172, 1, 0, 0, 0, 175, 181, 3, 24, 12, 0, 176, 181,
+		3, 26, 13, 0, 177, 181, 3, 28, 14, 0, 178, 181, 3, 30, 15, 0, 179, 181,
+		3, 32, 16, 0, 180, 175, 1, 0, 0, 0, 180, 176, 1, 0, 0, 0, 180, 177, 1,
+		0, 0, 0, 180, 178, 1, 0, 0, 0, 180, 179, 1, 0, 0, 0, 181, 23, 1, 0, 0,
+		0, 182, 183, 5, 30, 0, 0, 183, 25, 1, 0, 0, 0, 184, 185, 5, 82, 0, 0, 185,
+		27, 1, 0, 0, 0, 186, 187, 5, 29, 0, 0, 187, 29, 1, 0, 0, 0, 188, 189, 5,
+		8, 0, 0, 189, 31, 1, 0, 0, 0, 190, 191, 5, 69, 0, 0, 191, 33, 1, 0, 0,
+		0, 192, 193, 5, 19, 0, 0, 193, 194, 5, 42, 0, 0, 194, 195, 3, 38, 19, 0,
+		195, 196, 5, 48, 0, 0, 196, 197, 3, 38, 19, 0, 197, 198, 5, 43, 0, 0, 198,
+		35, 1, 0, 0, 0, 199, 200, 5, 20, 0, 0, 200, 201, 5, 42, 0, 0, 201, 202,
+		3, 38, 19, 0, 202, 203, 5, 48, 0, 0, 203, 204, 3, 38, 19, 0, 204, 205,
+		5, 48, 0, 0, 205, 206, 5, 29, 0, 0, 206, 207, 5, 43, 0, 0, 207, 37, 1,
+		0, 0, 0, 208, 211, 3, 24, 12, 0, 209, 211, 3, 40, 20, 0, 210, 208, 1, 0,
+		0, 0, 210, 209, 1, 0, 0, 0, 211, 39, 1, 0, 0, 0, 212, 221, 3, 42, 21, 0,
+		213, 221, 3, 46, 23, 0, 214, 221, 3, 48, 24, 0, 215, 221, 3, 52, 26, 0,
+		216, 221, 3, 54, 27, 0, 217, 221, 3, 56, 28, 0, 218, 221, 3, 58, 29, 0,
+		219, 221, 3, 60, 30, 0, 220, 212, 1, 0, 0, 0, 220, 213, 1, 0, 0, 0, 220,
+		214, 1, 0, 0, 0, 220, 215, 1, 0, 0, 0, 220, 216, 1, 0, 0, 0, 220, 217,
+		1, 0, 0, 0, 220, 218, 1, 0, 0, 0, 220, 219, 1, 0, 0, 0, 221, 41, 1, 0,
+		0, 0, 222, 223, 5, 21, 0, 0, 223, 224, 3, 44, 22, 0, 224, 43, 1, 0, 0,
+		0, 225, 226, 5, 42, 0, 0, 226, 227, 3, 64, 32, 0, 227, 228, 5, 43, 0, 0,
+		228, 45, 1, 0, 0, 0, 229, 230, 5, 22, 0, 0, 230, 231, 3, 62, 31, 0, 231,
+		47, 1, 0, 0, 0, 232, 233, 5, 23, 0, 0, 233, 234, 3, 50, 25, 0, 234, 49,
+		1, 0, 0, 0, 235, 236, 5, 42, 0, 0, 236, 241, 3, 62, 31, 0, 237, 238, 5,
+		48, 0, 0, 238, 240, 3, 62, 31, 0, 239, 237, 1, 0, 0, 0, 240, 243, 1, 0,
+		0, 0, 241, 239, 1, 0, 0, 0, 241, 242, 1, 0, 0, 0, 242, 244, 1, 0, 0, 0,
+		243, 241, 1, 0, 0, 0, 244, 245, 5, 43, 0, 0, 245, 51, 1, 0, 0, 0, 246,
+		247, 5, 24, 0, 0, 247, 248, 5, 42, 0, 0, 248, 253, 3, 44, 22, 0, 249, 250,
+		5, 48, 0, 0, 250, 252, 3, 44, 22, 0, 251, 249, 1, 0, 0, 0, 252, 255, 1,
+		0, 0, 0, 253, 251, 1, 0, 0, 0, 253, 254, 1, 0, 0, 0, 254, 256, 1, 0, 0,
+		0, 255, 253, 1, 0, 0, 0, 256, 257, 5, 43, 0, 0, 257, 53, 1, 0, 0, 0, 258,
+		259, 5, 25, 0, 0, 259, 260, 5, 42, 0, 0, 260, 265, 3, 62, 31, 0, 261, 262,
+		5, 48, 0, 0, 262, 264, 3, 62, 31, 0, 263, 261, 1, 0, 0, 0, 264, 267, 1,
+		0, 0, 0, 265, 263, 1, 0, 0, 0, 265, 266, 1, 0, 0, 0, 266, 268, 1, 0, 0,
+		0, 267, 265, 1, 0, 0, 0, 268, 269, 5, 43, 0, 0, 269, 55, 1, 0, 0, 0, 270,
+		271, 5, 26, 0, 0, 271, 272, 5, 42, 0, 0, 272, 277, 3, 50, 25, 0, 273, 274,
+		5, 48, 0, 0, 274, 276, 3, 50, 25, 0, 275, 273, 1, 0, 0, 0, 276, 279, 1,
+		0, 0, 0, 277, 275, 1, 0, 0, 0, 277, 278, 1, 0, 0, 0, 278, 280, 1, 0, 0,
+		0, 279, 277, 1, 0, 0, 0, 280, 281, 5, 43, 0, 0, 281, 57, 1, 0, 0, 0, 282,
+		283, 5, 27, 0, 0, 283, 284, 5, 42, 0, 0, 284, 289, 3, 40, 20, 0, 285, 286,
+		5, 48, 0, 0, 286, 288, 3, 40, 20, 0, 287, 285, 1, 0, 0, 0, 288, 291, 1,
+		0, 0, 0, 289, 287, 1, 0, 0, 0, 289, 290, 1, 0, 0, 0, 290, 292, 1, 0, 0,
+		0, 291, 289, 1, 0, 0, 0, 292, 293, 5, 43, 0, 0, 293, 59, 1, 0, 0, 0, 294,
+		295, 5, 28, 0, 0, 295, 296, 5, 42, 0, 0, 296, 297, 5, 29, 0, 0, 297, 298,
+		5, 48, 0, 0, 298, 299, 5, 29, 0, 0, 299, 300, 5, 48, 0, 0, 300, 301, 5,
+		29, 0, 0, 301, 302, 5, 48, 0, 0, 302, 303, 5, 29, 0, 0, 303, 304, 5, 43,
+		0, 0, 304, 61, 1, 0, 0, 0, 305, 306, 5, 42, 0, 0, 306, 311, 3, 64, 32,
+		0, 307, 308, 5, 48, 0, 0, 308, 310, 3, 64, 32, 0, 309, 307, 1, 0, 0, 0,
+		310, 313, 1, 0, 0, 0, 311, 309, 1, 0, 0, 0, 311, 312, 1, 0, 0, 0, 312,
+		314, 1, 0, 0, 0, 313, 311, 1, 0, 0, 0, 314, 315, 5, 43, 0, 0, 315, 63,
+		1, 0, 0, 0, 316, 317, 5, 29, 0, 0, 317, 318, 5, 29, 0, 0, 318, 65, 1, 0,
+		0, 0, 24, 77, 85, 87, 92, 97, 104, 112, 119, 128, 137, 145, 148, 155, 165,
+		172, 180, 210, 220, 241, 253, 265, 277, 289, 311,
+	}
+	deserializer := antlr.NewATNDeserializer(nil)
+	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
+	atn := staticData.atn
+	staticData.decisionToDFA = make([]*antlr.DFA, len(atn.DecisionToState))
+	decisionToDFA := staticData.decisionToDFA
+	for index, state := range atn.DecisionToState {
+		decisionToDFA[index] = antlr.NewDFA(state, index)
+	}
+}
+
+// CQLParserInit initializes any static state used to implement CQLParser. By default the
+// static state used to implement the parser is lazily initialized during the first call to
+// NewCQLParser(). You can call this function if you wish to initialize the static state ahead
+// of time.
+func CQLParserInit() {
+	staticData := &CQLParserParserStaticData
+	staticData.once.Do(cqlparserParserInit)
+}
+
+// NewCQLParser produces a new parser instance for the optional input antlr.TokenStream.
 func NewCQLParser(input antlr.TokenStream) *CQLParser {
+	CQLParserInit()
 	this := new(CQLParser)
-
 	this.BaseParser = antlr.NewBaseParser(input)
-
-	this.Interpreter = antlr.NewParserATNSimulator(this, deserializedATN, decisionToDFA, antlr.NewPredictionContextCache())
-	this.RuleNames = ruleNames
-	this.LiteralNames = literalNames
-	this.SymbolicNames = symbolicNames
+	staticData := &CQLParserParserStaticData
+	this.Interpreter = antlr.NewParserATNSimulator(this, staticData.atn, staticData.decisionToDFA, staticData.PredictionContextCache)
+	this.RuleNames = staticData.RuleNames
+	this.LiteralNames = staticData.LiteralNames
+	this.SymbolicNames = staticData.SymbolicNames
 	this.GrammarFileName = "CQLParser.g4"
 
 	return this
@@ -348,6 +370,10 @@ type ICqlFilterContext interface {
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
 
+	// Getter signatures
+	BooleanExpression() IBooleanExpressionContext
+	EOF() antlr.TerminalNode
+
 	// IsCqlFilterContext differentiates from other interfaces.
 	IsCqlFilterContext()
 }
@@ -359,9 +385,14 @@ type CqlFilterContext struct {
 
 func NewEmptyCqlFilterContext() *CqlFilterContext {
 	var p = new(CqlFilterContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_cqlFilter
 	return p
+}
+
+func InitEmptyCqlFilterContext(p *CqlFilterContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_cqlFilter
 }
 
 func (*CqlFilterContext) IsCqlFilterContext() {}
@@ -370,7 +401,6 @@ func NewCqlFilterContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	var p = new(CqlFilterContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_cqlFilter
 
@@ -380,7 +410,13 @@ func NewCqlFilterContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 func (s *CqlFilterContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *CqlFilterContext) BooleanExpression() IBooleanExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IBooleanExpressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -416,23 +452,6 @@ func (s *CqlFilterContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) CqlFilter() (localctx ICqlFilterContext) {
 	localctx = NewCqlFilterContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 0, CQLParserRULE_cqlFilter)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(66)
@@ -441,9 +460,23 @@ func (p *CQLParser) CqlFilter() (localctx ICqlFilterContext) {
 	{
 		p.SetState(67)
 		p.Match(CQLParserEOF)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IBooleanExpressionContext is an interface to support dynamic dispatch.
@@ -452,7 +485,6 @@ type IBooleanExpressionContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
 	// IsBooleanExpressionContext differentiates from other interfaces.
 	IsBooleanExpressionContext()
 }
@@ -464,9 +496,14 @@ type BooleanExpressionContext struct {
 
 func NewEmptyBooleanExpressionContext() *BooleanExpressionContext {
 	var p = new(BooleanExpressionContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_booleanExpression
 	return p
+}
+
+func InitEmptyBooleanExpressionContext(p *BooleanExpressionContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_booleanExpression
 }
 
 func (*BooleanExpressionContext) IsBooleanExpressionContext() {}
@@ -475,7 +512,6 @@ func NewBooleanExpressionContext(parser antlr.Parser, parent antlr.ParserRuleCon
 	var p = new(BooleanExpressionContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_booleanExpression
 
@@ -484,8 +520,8 @@ func NewBooleanExpressionContext(parser antlr.Parser, parent antlr.ParserRuleCon
 
 func (s *BooleanExpressionContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *BooleanExpressionContext) CopyFrom(ctx *BooleanExpressionContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *BooleanExpressionContext) CopyAll(ctx *BooleanExpressionContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
 }
 
 func (s *BooleanExpressionContext) GetRuleContext() antlr.RuleContext {
@@ -497,15 +533,15 @@ func (s *BooleanExpressionContext) ToStringTree(ruleNames []string, recog antlr.
 }
 
 type BoolExprParenContext struct {
-	*BooleanExpressionContext
+	BooleanExpressionContext
 }
 
 func NewBoolExprParenContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BoolExprParenContext {
 	var p = new(BoolExprParenContext)
 
-	p.BooleanExpressionContext = NewEmptyBooleanExpressionContext()
+	InitEmptyBooleanExpressionContext(&p.BooleanExpressionContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*BooleanExpressionContext))
+	p.CopyAll(ctx.(*BooleanExpressionContext))
 
 	return p
 }
@@ -519,7 +555,13 @@ func (s *BoolExprParenContext) LEFTPAREN() antlr.TerminalNode {
 }
 
 func (s *BoolExprParenContext) BooleanExpression() IBooleanExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IBooleanExpressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -545,7 +587,7 @@ func (s *BoolExprParenContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type BoolExprAndContext struct {
-	*BooleanExpressionContext
+	BooleanExpressionContext
 	left  IBooleanExpressionContext
 	right IBooleanExpressionContext
 }
@@ -553,9 +595,9 @@ type BoolExprAndContext struct {
 func NewBoolExprAndContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BoolExprAndContext {
 	var p = new(BoolExprAndContext)
 
-	p.BooleanExpressionContext = NewEmptyBooleanExpressionContext()
+	InitEmptyBooleanExpressionContext(&p.BooleanExpressionContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*BooleanExpressionContext))
+	p.CopyAll(ctx.(*BooleanExpressionContext))
 
 	return p
 }
@@ -577,12 +619,20 @@ func (s *BoolExprAndContext) AND() antlr.TerminalNode {
 }
 
 func (s *BoolExprAndContext) AllBooleanExpression() []IBooleanExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem())
-	var tst = make([]IBooleanExpressionContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IBooleanExpressionContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IBooleanExpressionContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IBooleanExpressionContext); ok {
 			tst[i] = t.(IBooleanExpressionContext)
+			i++
 		}
 	}
 
@@ -590,7 +640,17 @@ func (s *BoolExprAndContext) AllBooleanExpression() []IBooleanExpressionContext 
 }
 
 func (s *BoolExprAndContext) BooleanExpression(i int) IBooleanExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IBooleanExpressionContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -612,15 +672,15 @@ func (s *BoolExprAndContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type BoolExprNotContext struct {
-	*BooleanExpressionContext
+	BooleanExpressionContext
 }
 
 func NewBoolExprNotContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BoolExprNotContext {
 	var p = new(BoolExprNotContext)
 
-	p.BooleanExpressionContext = NewEmptyBooleanExpressionContext()
+	InitEmptyBooleanExpressionContext(&p.BooleanExpressionContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*BooleanExpressionContext))
+	p.CopyAll(ctx.(*BooleanExpressionContext))
 
 	return p
 }
@@ -634,7 +694,13 @@ func (s *BoolExprNotContext) NOT() antlr.TerminalNode {
 }
 
 func (s *BoolExprNotContext) BooleanExpression() IBooleanExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IBooleanExpressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -656,15 +722,15 @@ func (s *BoolExprNotContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type BoolExprTermContext struct {
-	*BooleanExpressionContext
+	BooleanExpressionContext
 }
 
 func NewBoolExprTermContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BoolExprTermContext {
 	var p = new(BoolExprTermContext)
 
-	p.BooleanExpressionContext = NewEmptyBooleanExpressionContext()
+	InitEmptyBooleanExpressionContext(&p.BooleanExpressionContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*BooleanExpressionContext))
+	p.CopyAll(ctx.(*BooleanExpressionContext))
 
 	return p
 }
@@ -674,7 +740,13 @@ func (s *BoolExprTermContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *BoolExprTermContext) BooleanTerm() IBooleanTermContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanTermContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IBooleanTermContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -696,7 +768,7 @@ func (s *BoolExprTermContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type BoolExprOrContext struct {
-	*BooleanExpressionContext
+	BooleanExpressionContext
 	left  IBooleanExpressionContext
 	right IBooleanExpressionContext
 }
@@ -704,9 +776,9 @@ type BoolExprOrContext struct {
 func NewBoolExprOrContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *BoolExprOrContext {
 	var p = new(BoolExprOrContext)
 
-	p.BooleanExpressionContext = NewEmptyBooleanExpressionContext()
+	InitEmptyBooleanExpressionContext(&p.BooleanExpressionContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*BooleanExpressionContext))
+	p.CopyAll(ctx.(*BooleanExpressionContext))
 
 	return p
 }
@@ -728,12 +800,20 @@ func (s *BoolExprOrContext) OR() antlr.TerminalNode {
 }
 
 func (s *BoolExprOrContext) AllBooleanExpression() []IBooleanExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem())
-	var tst = make([]IBooleanExpressionContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IBooleanExpressionContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IBooleanExpressionContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IBooleanExpressionContext); ok {
 			tst[i] = t.(IBooleanExpressionContext)
+			i++
 		}
 	}
 
@@ -741,7 +821,17 @@ func (s *BoolExprOrContext) AllBooleanExpression() []IBooleanExpressionContext {
 }
 
 func (s *BoolExprOrContext) BooleanExpression(i int) IBooleanExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanExpressionContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IBooleanExpressionContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -768,35 +858,23 @@ func (p *CQLParser) BooleanExpression() (localctx IBooleanExpressionContext) {
 
 func (p *CQLParser) booleanExpression(_p int) (localctx IBooleanExpressionContext) {
 	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
+
 	_parentState := p.GetState()
 	localctx = NewBooleanExpressionContext(p, p.GetParserRuleContext(), _parentState)
 	var _prevctx IBooleanExpressionContext = localctx
 	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
 	_startState := 2
 	p.EnterRecursionRule(localctx, 2, CQLParserRULE_booleanExpression, _p)
-
-	defer func() {
-		p.UnrollRecursionContexts(_parentctx)
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
 	p.SetState(77)
 	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 0, p.GetParserRuleContext()) {
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 0, p.GetParserRuleContext()) {
 	case 1:
 		localctx = NewBoolExprParenContext(p, localctx)
 		p.SetParserRuleContext(localctx)
@@ -805,6 +883,10 @@ func (p *CQLParser) booleanExpression(_p int) (localctx IBooleanExpressionContex
 		{
 			p.SetState(70)
 			p.Match(CQLParserLEFTPAREN)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		{
 			p.SetState(71)
@@ -813,6 +895,10 @@ func (p *CQLParser) booleanExpression(_p int) (localctx IBooleanExpressionContex
 		{
 			p.SetState(72)
 			p.Match(CQLParserRIGHTPAREN)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	case 2:
@@ -822,6 +908,10 @@ func (p *CQLParser) booleanExpression(_p int) (localctx IBooleanExpressionContex
 		{
 			p.SetState(74)
 			p.Match(CQLParserNOT)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		{
 			p.SetState(75)
@@ -837,12 +927,19 @@ func (p *CQLParser) booleanExpression(_p int) (localctx IBooleanExpressionContex
 			p.BooleanTerm()
 		}
 
+	case antlr.ATNInvalidAltNumber:
+		goto errorExit
 	}
 	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
 	p.SetState(87)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 2, p.GetParserRuleContext())
-
+	if p.HasError() {
+		goto errorExit
+	}
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 2, p.GetParserRuleContext())
+	if p.HasError() {
+		goto errorExit
+	}
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			if p.GetParseListeners() != nil {
@@ -851,7 +948,11 @@ func (p *CQLParser) booleanExpression(_p int) (localctx IBooleanExpressionContex
 			_prevctx = localctx
 			p.SetState(85)
 			p.GetErrorHandler().Sync(p)
-			switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 1, p.GetParserRuleContext()) {
+			if p.HasError() {
+				goto errorExit
+			}
+
+			switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 1, p.GetParserRuleContext()) {
 			case 1:
 				localctx = NewBoolExprAndContext(p, NewBooleanExpressionContext(p, _parentctx, _parentState))
 				localctx.(*BoolExprAndContext).left = _prevctx
@@ -860,11 +961,16 @@ func (p *CQLParser) booleanExpression(_p int) (localctx IBooleanExpressionContex
 				p.SetState(79)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 4)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 4)", ""))
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 4)", ""))
+					goto errorExit
 				}
 				{
 					p.SetState(80)
 					p.Match(CQLParserAND)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
 				}
 				{
 					p.SetState(81)
@@ -882,11 +988,16 @@ func (p *CQLParser) booleanExpression(_p int) (localctx IBooleanExpressionContex
 				p.SetState(82)
 
 				if !(p.Precpred(p.GetParserRuleContext(), 3)) {
-					panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 3)", ""))
+					p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 3)", ""))
+					goto errorExit
 				}
 				{
 					p.SetState(83)
 					p.Match(CQLParserOR)
+					if p.HasError() {
+						// Recognition error - abort rule
+						goto errorExit
+					}
 				}
 				{
 					p.SetState(84)
@@ -896,15 +1007,33 @@ func (p *CQLParser) booleanExpression(_p int) (localctx IBooleanExpressionContex
 					localctx.(*BoolExprOrContext).right = _x
 				}
 
+			case antlr.ATNInvalidAltNumber:
+				goto errorExit
 			}
 
 		}
 		p.SetState(89)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 2, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 2, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.UnrollRecursionContexts(_parentctx)
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IBooleanTermContext is an interface to support dynamic dispatch.
@@ -913,6 +1042,10 @@ type IBooleanTermContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	Predicate() IPredicateContext
+	BooleanLiteral() IBooleanLiteralContext
 
 	// IsBooleanTermContext differentiates from other interfaces.
 	IsBooleanTermContext()
@@ -925,9 +1058,14 @@ type BooleanTermContext struct {
 
 func NewEmptyBooleanTermContext() *BooleanTermContext {
 	var p = new(BooleanTermContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_booleanTerm
 	return p
+}
+
+func InitEmptyBooleanTermContext(p *BooleanTermContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_booleanTerm
 }
 
 func (*BooleanTermContext) IsBooleanTermContext() {}
@@ -936,7 +1074,6 @@ func NewBooleanTermContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 	var p = new(BooleanTermContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_booleanTerm
 
@@ -946,7 +1083,13 @@ func NewBooleanTermContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 func (s *BooleanTermContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *BooleanTermContext) Predicate() IPredicateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPredicateContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPredicateContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -956,7 +1099,13 @@ func (s *BooleanTermContext) Predicate() IPredicateContext {
 }
 
 func (s *BooleanTermContext) BooleanLiteral() IBooleanLiteralContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanLiteralContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IBooleanLiteralContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -988,26 +1137,13 @@ func (s *BooleanTermContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) BooleanTerm() (localctx IBooleanTermContext) {
 	localctx = NewBooleanTermContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 4, CQLParserRULE_booleanTerm)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.SetState(92)
 	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 3, p.GetParserRuleContext()) {
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 3, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
@@ -1022,9 +1158,21 @@ func (p *CQLParser) BooleanTerm() (localctx IBooleanTermContext) {
 			p.BooleanLiteral()
 		}
 
+	case antlr.ATNInvalidAltNumber:
+		goto errorExit
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IPredicateContext is an interface to support dynamic dispatch.
@@ -1033,6 +1181,11 @@ type IPredicateContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	ComparisonPredicate() IComparisonPredicateContext
+	SpatialPredicate() ISpatialPredicateContext
+	DistancePredicate() IDistancePredicateContext
 
 	// IsPredicateContext differentiates from other interfaces.
 	IsPredicateContext()
@@ -1045,9 +1198,14 @@ type PredicateContext struct {
 
 func NewEmptyPredicateContext() *PredicateContext {
 	var p = new(PredicateContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_predicate
 	return p
+}
+
+func InitEmptyPredicateContext(p *PredicateContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_predicate
 }
 
 func (*PredicateContext) IsPredicateContext() {}
@@ -1056,7 +1214,6 @@ func NewPredicateContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	var p = new(PredicateContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_predicate
 
@@ -1066,7 +1223,13 @@ func NewPredicateContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 func (s *PredicateContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *PredicateContext) ComparisonPredicate() IComparisonPredicateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IComparisonPredicateContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IComparisonPredicateContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1076,7 +1239,13 @@ func (s *PredicateContext) ComparisonPredicate() IComparisonPredicateContext {
 }
 
 func (s *PredicateContext) SpatialPredicate() ISpatialPredicateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ISpatialPredicateContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ISpatialPredicateContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1086,7 +1255,13 @@ func (s *PredicateContext) SpatialPredicate() ISpatialPredicateContext {
 }
 
 func (s *PredicateContext) DistancePredicate() IDistancePredicateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IDistancePredicateContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IDistancePredicateContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1118,25 +1293,11 @@ func (s *PredicateContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) Predicate() (localctx IPredicateContext) {
 	localctx = NewPredicateContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 6, CQLParserRULE_predicate)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.SetState(97)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 
 	switch p.GetTokenStream().LA(1) {
 	case CQLParserBooleanLiteral, CQLParserNumericLiteral, CQLParserIdentifier, CQLParserLEFTPAREN, CQLParserTemporalLiteral, CQLParserCharacterStringLiteral:
@@ -1161,10 +1322,21 @@ func (p *CQLParser) Predicate() (localctx IPredicateContext) {
 		}
 
 	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IComparisonPredicateContext is an interface to support dynamic dispatch.
@@ -1173,7 +1345,6 @@ type IComparisonPredicateContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
 	// IsComparisonPredicateContext differentiates from other interfaces.
 	IsComparisonPredicateContext()
 }
@@ -1185,9 +1356,14 @@ type ComparisonPredicateContext struct {
 
 func NewEmptyComparisonPredicateContext() *ComparisonPredicateContext {
 	var p = new(ComparisonPredicateContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_comparisonPredicate
 	return p
+}
+
+func InitEmptyComparisonPredicateContext(p *ComparisonPredicateContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_comparisonPredicate
 }
 
 func (*ComparisonPredicateContext) IsComparisonPredicateContext() {}
@@ -1196,7 +1372,6 @@ func NewComparisonPredicateContext(parser antlr.Parser, parent antlr.ParserRuleC
 	var p = new(ComparisonPredicateContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_comparisonPredicate
 
@@ -1205,8 +1380,8 @@ func NewComparisonPredicateContext(parser antlr.Parser, parent antlr.ParserRuleC
 
 func (s *ComparisonPredicateContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *ComparisonPredicateContext) CopyFrom(ctx *ComparisonPredicateContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *ComparisonPredicateContext) CopyAll(ctx *ComparisonPredicateContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
 }
 
 func (s *ComparisonPredicateContext) GetRuleContext() antlr.RuleContext {
@@ -1218,15 +1393,15 @@ func (s *ComparisonPredicateContext) ToStringTree(ruleNames []string, recog antl
 }
 
 type PredicateBinaryCompContext struct {
-	*ComparisonPredicateContext
+	ComparisonPredicateContext
 }
 
 func NewPredicateBinaryCompContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *PredicateBinaryCompContext {
 	var p = new(PredicateBinaryCompContext)
 
-	p.ComparisonPredicateContext = NewEmptyComparisonPredicateContext()
+	InitEmptyComparisonPredicateContext(&p.ComparisonPredicateContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ComparisonPredicateContext))
+	p.CopyAll(ctx.(*ComparisonPredicateContext))
 
 	return p
 }
@@ -1236,7 +1411,13 @@ func (s *PredicateBinaryCompContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *PredicateBinaryCompContext) BinaryComparisonPredicate() IBinaryComparisonPredicateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBinaryComparisonPredicateContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IBinaryComparisonPredicateContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1258,15 +1439,15 @@ func (s *PredicateBinaryCompContext) ExitRule(listener antlr.ParseTreeListener) 
 }
 
 type PredicateInContext struct {
-	*ComparisonPredicateContext
+	ComparisonPredicateContext
 }
 
 func NewPredicateInContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *PredicateInContext {
 	var p = new(PredicateInContext)
 
-	p.ComparisonPredicateContext = NewEmptyComparisonPredicateContext()
+	InitEmptyComparisonPredicateContext(&p.ComparisonPredicateContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ComparisonPredicateContext))
+	p.CopyAll(ctx.(*ComparisonPredicateContext))
 
 	return p
 }
@@ -1276,7 +1457,13 @@ func (s *PredicateInContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *PredicateInContext) IsInListPredicate() IIsInListPredicateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIsInListPredicateContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IIsInListPredicateContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1298,15 +1485,15 @@ func (s *PredicateInContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type PredicateBetweenContext struct {
-	*ComparisonPredicateContext
+	ComparisonPredicateContext
 }
 
 func NewPredicateBetweenContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *PredicateBetweenContext {
 	var p = new(PredicateBetweenContext)
 
-	p.ComparisonPredicateContext = NewEmptyComparisonPredicateContext()
+	InitEmptyComparisonPredicateContext(&p.ComparisonPredicateContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ComparisonPredicateContext))
+	p.CopyAll(ctx.(*ComparisonPredicateContext))
 
 	return p
 }
@@ -1316,7 +1503,13 @@ func (s *PredicateBetweenContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *PredicateBetweenContext) IsBetweenPredicate() IIsBetweenPredicateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIsBetweenPredicateContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IIsBetweenPredicateContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1338,15 +1531,15 @@ func (s *PredicateBetweenContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type PredicateLikeContext struct {
-	*ComparisonPredicateContext
+	ComparisonPredicateContext
 }
 
 func NewPredicateLikeContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *PredicateLikeContext {
 	var p = new(PredicateLikeContext)
 
-	p.ComparisonPredicateContext = NewEmptyComparisonPredicateContext()
+	InitEmptyComparisonPredicateContext(&p.ComparisonPredicateContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ComparisonPredicateContext))
+	p.CopyAll(ctx.(*ComparisonPredicateContext))
 
 	return p
 }
@@ -1356,7 +1549,13 @@ func (s *PredicateLikeContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *PredicateLikeContext) IsLikePredicate() IIsLikePredicateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIsLikePredicateContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IIsLikePredicateContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1378,15 +1577,15 @@ func (s *PredicateLikeContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type PredicateIsNullContext struct {
-	*ComparisonPredicateContext
+	ComparisonPredicateContext
 }
 
 func NewPredicateIsNullContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *PredicateIsNullContext {
 	var p = new(PredicateIsNullContext)
 
-	p.ComparisonPredicateContext = NewEmptyComparisonPredicateContext()
+	InitEmptyComparisonPredicateContext(&p.ComparisonPredicateContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ComparisonPredicateContext))
+	p.CopyAll(ctx.(*ComparisonPredicateContext))
 
 	return p
 }
@@ -1396,7 +1595,13 @@ func (s *PredicateIsNullContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *PredicateIsNullContext) IsNullPredicate() IIsNullPredicateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IIsNullPredicateContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IIsNullPredicateContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1420,26 +1625,13 @@ func (s *PredicateIsNullContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) ComparisonPredicate() (localctx IComparisonPredicateContext) {
 	localctx = NewComparisonPredicateContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 8, CQLParserRULE_comparisonPredicate)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.SetState(104)
 	p.GetErrorHandler().Sync(p)
-	switch p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 5, p.GetParserRuleContext()) {
+	if p.HasError() {
+		goto errorExit
+	}
+
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 5, p.GetParserRuleContext()) {
 	case 1:
 		localctx = NewPredicateBinaryCompContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
@@ -1480,9 +1672,21 @@ func (p *CQLParser) ComparisonPredicate() (localctx IComparisonPredicateContext)
 			p.IsNullPredicate()
 		}
 
+	case antlr.ATNInvalidAltNumber:
+		goto errorExit
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IBinaryComparisonPredicateContext is an interface to support dynamic dispatch.
@@ -1510,6 +1714,11 @@ type IBinaryComparisonPredicateContext interface {
 	// SetRight sets the right rule contexts.
 	SetRight(IScalarExpressionContext)
 
+	// Getter signatures
+	AllScalarExpression() []IScalarExpressionContext
+	ScalarExpression(i int) IScalarExpressionContext
+	ComparisonOperator() antlr.TerminalNode
+
 	// IsBinaryComparisonPredicateContext differentiates from other interfaces.
 	IsBinaryComparisonPredicateContext()
 }
@@ -1524,9 +1733,14 @@ type BinaryComparisonPredicateContext struct {
 
 func NewEmptyBinaryComparisonPredicateContext() *BinaryComparisonPredicateContext {
 	var p = new(BinaryComparisonPredicateContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_binaryComparisonPredicate
 	return p
+}
+
+func InitEmptyBinaryComparisonPredicateContext(p *BinaryComparisonPredicateContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_binaryComparisonPredicate
 }
 
 func (*BinaryComparisonPredicateContext) IsBinaryComparisonPredicateContext() {}
@@ -1535,7 +1749,6 @@ func NewBinaryComparisonPredicateContext(parser antlr.Parser, parent antlr.Parse
 	var p = new(BinaryComparisonPredicateContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_binaryComparisonPredicate
 
@@ -1557,12 +1770,20 @@ func (s *BinaryComparisonPredicateContext) SetLeft(v IScalarExpressionContext) {
 func (s *BinaryComparisonPredicateContext) SetRight(v IScalarExpressionContext) { s.right = v }
 
 func (s *BinaryComparisonPredicateContext) AllScalarExpression() []IScalarExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IScalarExpressionContext)(nil)).Elem())
-	var tst = make([]IScalarExpressionContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IScalarExpressionContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IScalarExpressionContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IScalarExpressionContext); ok {
 			tst[i] = t.(IScalarExpressionContext)
+			i++
 		}
 	}
 
@@ -1570,7 +1791,17 @@ func (s *BinaryComparisonPredicateContext) AllScalarExpression() []IScalarExpres
 }
 
 func (s *BinaryComparisonPredicateContext) ScalarExpression(i int) IScalarExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IScalarExpressionContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IScalarExpressionContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1606,23 +1837,6 @@ func (s *BinaryComparisonPredicateContext) ExitRule(listener antlr.ParseTreeList
 func (p *CQLParser) BinaryComparisonPredicate() (localctx IBinaryComparisonPredicateContext) {
 	localctx = NewBinaryComparisonPredicateContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 10, CQLParserRULE_binaryComparisonPredicate)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(106)
@@ -1637,6 +1851,10 @@ func (p *CQLParser) BinaryComparisonPredicate() (localctx IBinaryComparisonPredi
 		var _m = p.Match(CQLParserComparisonOperator)
 
 		localctx.(*BinaryComparisonPredicateContext).op = _m
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(108)
@@ -1646,7 +1864,17 @@ func (p *CQLParser) BinaryComparisonPredicate() (localctx IBinaryComparisonPredi
 		localctx.(*BinaryComparisonPredicateContext).right = _x
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IIsLikePredicateContext is an interface to support dynamic dispatch.
@@ -1655,6 +1883,13 @@ type IIsLikePredicateContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	PropertyName() IPropertyNameContext
+	CharacterLiteral() ICharacterLiteralContext
+	LIKE() antlr.TerminalNode
+	ILIKE() antlr.TerminalNode
+	NOT() antlr.TerminalNode
 
 	// IsIsLikePredicateContext differentiates from other interfaces.
 	IsIsLikePredicateContext()
@@ -1667,9 +1902,14 @@ type IsLikePredicateContext struct {
 
 func NewEmptyIsLikePredicateContext() *IsLikePredicateContext {
 	var p = new(IsLikePredicateContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_isLikePredicate
 	return p
+}
+
+func InitEmptyIsLikePredicateContext(p *IsLikePredicateContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_isLikePredicate
 }
 
 func (*IsLikePredicateContext) IsIsLikePredicateContext() {}
@@ -1678,7 +1918,6 @@ func NewIsLikePredicateContext(parser antlr.Parser, parent antlr.ParserRuleConte
 	var p = new(IsLikePredicateContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_isLikePredicate
 
@@ -1688,7 +1927,13 @@ func NewIsLikePredicateContext(parser antlr.Parser, parent antlr.ParserRuleConte
 func (s *IsLikePredicateContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *IsLikePredicateContext) PropertyName() IPropertyNameContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPropertyNameContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPropertyNameContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1698,7 +1943,13 @@ func (s *IsLikePredicateContext) PropertyName() IPropertyNameContext {
 }
 
 func (s *IsLikePredicateContext) CharacterLiteral() ICharacterLiteralContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICharacterLiteralContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ICharacterLiteralContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1744,22 +1995,6 @@ func (p *CQLParser) IsLikePredicate() (localctx IIsLikePredicateContext) {
 	p.EnterRule(localctx, 12, CQLParserRULE_isLikePredicate)
 	var _la int
 
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(110)
@@ -1767,30 +2002,49 @@ func (p *CQLParser) IsLikePredicate() (localctx IIsLikePredicateContext) {
 	}
 	p.SetState(112)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == CQLParserNOT {
 		{
 			p.SetState(111)
 			p.Match(CQLParserNOT)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	}
-	p.SetState(114)
-	_la = p.GetTokenStream().LA(1)
+	{
+		p.SetState(114)
+		_la = p.GetTokenStream().LA(1)
 
-	if !(_la == CQLParserLIKE || _la == CQLParserILIKE) {
-		p.GetErrorHandler().RecoverInline(p)
-	} else {
-		p.GetErrorHandler().ReportMatch(p)
-		p.Consume()
+		if !(_la == CQLParserLIKE || _la == CQLParserILIKE) {
+			p.GetErrorHandler().RecoverInline(p)
+		} else {
+			p.GetErrorHandler().ReportMatch(p)
+			p.Consume()
+		}
 	}
 	{
 		p.SetState(115)
 		p.CharacterLiteral()
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IIsBetweenPredicateContext is an interface to support dynamic dispatch.
@@ -1799,6 +2053,13 @@ type IIsBetweenPredicateContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	AllScalarExpression() []IScalarExpressionContext
+	ScalarExpression(i int) IScalarExpressionContext
+	BETWEEN() antlr.TerminalNode
+	AND() antlr.TerminalNode
+	NOT() antlr.TerminalNode
 
 	// IsIsBetweenPredicateContext differentiates from other interfaces.
 	IsIsBetweenPredicateContext()
@@ -1811,9 +2072,14 @@ type IsBetweenPredicateContext struct {
 
 func NewEmptyIsBetweenPredicateContext() *IsBetweenPredicateContext {
 	var p = new(IsBetweenPredicateContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_isBetweenPredicate
 	return p
+}
+
+func InitEmptyIsBetweenPredicateContext(p *IsBetweenPredicateContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_isBetweenPredicate
 }
 
 func (*IsBetweenPredicateContext) IsIsBetweenPredicateContext() {}
@@ -1822,7 +2088,6 @@ func NewIsBetweenPredicateContext(parser antlr.Parser, parent antlr.ParserRuleCo
 	var p = new(IsBetweenPredicateContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_isBetweenPredicate
 
@@ -1832,12 +2097,20 @@ func NewIsBetweenPredicateContext(parser antlr.Parser, parent antlr.ParserRuleCo
 func (s *IsBetweenPredicateContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *IsBetweenPredicateContext) AllScalarExpression() []IScalarExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IScalarExpressionContext)(nil)).Elem())
-	var tst = make([]IScalarExpressionContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IScalarExpressionContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IScalarExpressionContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IScalarExpressionContext); ok {
 			tst[i] = t.(IScalarExpressionContext)
+			i++
 		}
 	}
 
@@ -1845,7 +2118,17 @@ func (s *IsBetweenPredicateContext) AllScalarExpression() []IScalarExpressionCon
 }
 
 func (s *IsBetweenPredicateContext) ScalarExpression(i int) IScalarExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IScalarExpressionContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IScalarExpressionContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -1891,22 +2174,6 @@ func (p *CQLParser) IsBetweenPredicate() (localctx IIsBetweenPredicateContext) {
 	p.EnterRule(localctx, 14, CQLParserRULE_isBetweenPredicate)
 	var _la int
 
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(117)
@@ -1914,18 +2181,29 @@ func (p *CQLParser) IsBetweenPredicate() (localctx IIsBetweenPredicateContext) {
 	}
 	p.SetState(119)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == CQLParserNOT {
 		{
 			p.SetState(118)
 			p.Match(CQLParserNOT)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	}
 	{
 		p.SetState(121)
 		p.Match(CQLParserBETWEEN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(122)
@@ -1934,13 +2212,27 @@ func (p *CQLParser) IsBetweenPredicate() (localctx IIsBetweenPredicateContext) {
 	{
 		p.SetState(123)
 		p.Match(CQLParserAND)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(124)
 		p.scalarExpression(0)
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IIsInListPredicateContext is an interface to support dynamic dispatch.
@@ -1949,6 +2241,19 @@ type IIsInListPredicateContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	PropertyName() IPropertyNameContext
+	IN() antlr.TerminalNode
+	LEFTPAREN() antlr.TerminalNode
+	RIGHTPAREN() antlr.TerminalNode
+	AllCharacterLiteral() []ICharacterLiteralContext
+	CharacterLiteral(i int) ICharacterLiteralContext
+	AllNumericLiteral() []INumericLiteralContext
+	NumericLiteral(i int) INumericLiteralContext
+	NOT() antlr.TerminalNode
+	AllCOMMA() []antlr.TerminalNode
+	COMMA(i int) antlr.TerminalNode
 
 	// IsIsInListPredicateContext differentiates from other interfaces.
 	IsIsInListPredicateContext()
@@ -1961,9 +2266,14 @@ type IsInListPredicateContext struct {
 
 func NewEmptyIsInListPredicateContext() *IsInListPredicateContext {
 	var p = new(IsInListPredicateContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_isInListPredicate
 	return p
+}
+
+func InitEmptyIsInListPredicateContext(p *IsInListPredicateContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_isInListPredicate
 }
 
 func (*IsInListPredicateContext) IsIsInListPredicateContext() {}
@@ -1972,7 +2282,6 @@ func NewIsInListPredicateContext(parser antlr.Parser, parent antlr.ParserRuleCon
 	var p = new(IsInListPredicateContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_isInListPredicate
 
@@ -1982,7 +2291,13 @@ func NewIsInListPredicateContext(parser antlr.Parser, parent antlr.ParserRuleCon
 func (s *IsInListPredicateContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *IsInListPredicateContext) PropertyName() IPropertyNameContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPropertyNameContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPropertyNameContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -2004,12 +2319,20 @@ func (s *IsInListPredicateContext) RIGHTPAREN() antlr.TerminalNode {
 }
 
 func (s *IsInListPredicateContext) AllCharacterLiteral() []ICharacterLiteralContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*ICharacterLiteralContext)(nil)).Elem())
-	var tst = make([]ICharacterLiteralContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(ICharacterLiteralContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]ICharacterLiteralContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(ICharacterLiteralContext); ok {
 			tst[i] = t.(ICharacterLiteralContext)
+			i++
 		}
 	}
 
@@ -2017,7 +2340,17 @@ func (s *IsInListPredicateContext) AllCharacterLiteral() []ICharacterLiteralCont
 }
 
 func (s *IsInListPredicateContext) CharacterLiteral(i int) ICharacterLiteralContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICharacterLiteralContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ICharacterLiteralContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -2027,12 +2360,20 @@ func (s *IsInListPredicateContext) CharacterLiteral(i int) ICharacterLiteralCont
 }
 
 func (s *IsInListPredicateContext) AllNumericLiteral() []INumericLiteralContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*INumericLiteralContext)(nil)).Elem())
-	var tst = make([]INumericLiteralContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(INumericLiteralContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]INumericLiteralContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(INumericLiteralContext); ok {
 			tst[i] = t.(INumericLiteralContext)
+			i++
 		}
 	}
 
@@ -2040,7 +2381,17 @@ func (s *IsInListPredicateContext) AllNumericLiteral() []INumericLiteralContext 
 }
 
 func (s *IsInListPredicateContext) NumericLiteral(i int) INumericLiteralContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*INumericLiteralContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(INumericLiteralContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -2086,22 +2437,6 @@ func (p *CQLParser) IsInListPredicate() (localctx IIsInListPredicateContext) {
 	p.EnterRule(localctx, 16, CQLParserRULE_isInListPredicate)
 	var _la int
 
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(126)
@@ -2109,25 +2444,43 @@ func (p *CQLParser) IsInListPredicate() (localctx IIsInListPredicateContext) {
 	}
 	p.SetState(128)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == CQLParserNOT {
 		{
 			p.SetState(127)
 			p.Match(CQLParserNOT)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	}
 	{
 		p.SetState(130)
 		p.Match(CQLParserIN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(131)
 		p.Match(CQLParserLEFTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	p.SetState(148)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 
 	switch p.GetTokenStream().LA(1) {
 	case CQLParserCharacterStringLiteral:
@@ -2137,12 +2490,19 @@ func (p *CQLParser) IsInListPredicate() (localctx IIsInListPredicateContext) {
 		}
 		p.SetState(137)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 		for _la == CQLParserCOMMA {
 			{
 				p.SetState(133)
 				p.Match(CQLParserCOMMA)
+				if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+				}
 			}
 			{
 				p.SetState(134)
@@ -2151,6 +2511,9 @@ func (p *CQLParser) IsInListPredicate() (localctx IIsInListPredicateContext) {
 
 			p.SetState(139)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+				goto errorExit
+			}
 			_la = p.GetTokenStream().LA(1)
 		}
 
@@ -2161,12 +2524,19 @@ func (p *CQLParser) IsInListPredicate() (localctx IIsInListPredicateContext) {
 		}
 		p.SetState(145)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 
 		for _la == CQLParserCOMMA {
 			{
 				p.SetState(141)
 				p.Match(CQLParserCOMMA)
+				if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+				}
 			}
 			{
 				p.SetState(142)
@@ -2175,18 +2545,36 @@ func (p *CQLParser) IsInListPredicate() (localctx IIsInListPredicateContext) {
 
 			p.SetState(147)
 			p.GetErrorHandler().Sync(p)
+			if p.HasError() {
+				goto errorExit
+			}
 			_la = p.GetTokenStream().LA(1)
 		}
 
 	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 	{
 		p.SetState(150)
 		p.Match(CQLParserRIGHTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IIsNullPredicateContext is an interface to support dynamic dispatch.
@@ -2195,6 +2583,12 @@ type IIsNullPredicateContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	PropertyName() IPropertyNameContext
+	IS() antlr.TerminalNode
+	NULL() antlr.TerminalNode
+	NOT() antlr.TerminalNode
 
 	// IsIsNullPredicateContext differentiates from other interfaces.
 	IsIsNullPredicateContext()
@@ -2207,9 +2601,14 @@ type IsNullPredicateContext struct {
 
 func NewEmptyIsNullPredicateContext() *IsNullPredicateContext {
 	var p = new(IsNullPredicateContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_isNullPredicate
 	return p
+}
+
+func InitEmptyIsNullPredicateContext(p *IsNullPredicateContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_isNullPredicate
 }
 
 func (*IsNullPredicateContext) IsIsNullPredicateContext() {}
@@ -2218,7 +2617,6 @@ func NewIsNullPredicateContext(parser antlr.Parser, parent antlr.ParserRuleConte
 	var p = new(IsNullPredicateContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_isNullPredicate
 
@@ -2228,7 +2626,13 @@ func NewIsNullPredicateContext(parser antlr.Parser, parent antlr.ParserRuleConte
 func (s *IsNullPredicateContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *IsNullPredicateContext) PropertyName() IPropertyNameContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPropertyNameContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPropertyNameContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -2274,22 +2678,6 @@ func (p *CQLParser) IsNullPredicate() (localctx IIsNullPredicateContext) {
 	p.EnterRule(localctx, 18, CQLParserRULE_isNullPredicate)
 	var _la int
 
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(152)
@@ -2298,24 +2686,49 @@ func (p *CQLParser) IsNullPredicate() (localctx IIsNullPredicateContext) {
 	{
 		p.SetState(153)
 		p.Match(CQLParserIS)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	p.SetState(155)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 	if _la == CQLParserNOT {
 		{
 			p.SetState(154)
 			p.Match(CQLParserNOT)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	}
 	{
 		p.SetState(157)
 		p.Match(CQLParserNULL)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IScalarExpressionContext is an interface to support dynamic dispatch.
@@ -2324,7 +2737,6 @@ type IScalarExpressionContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
 	// IsScalarExpressionContext differentiates from other interfaces.
 	IsScalarExpressionContext()
 }
@@ -2336,9 +2748,14 @@ type ScalarExpressionContext struct {
 
 func NewEmptyScalarExpressionContext() *ScalarExpressionContext {
 	var p = new(ScalarExpressionContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_scalarExpression
 	return p
+}
+
+func InitEmptyScalarExpressionContext(p *ScalarExpressionContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_scalarExpression
 }
 
 func (*ScalarExpressionContext) IsScalarExpressionContext() {}
@@ -2347,7 +2764,6 @@ func NewScalarExpressionContext(parser antlr.Parser, parent antlr.ParserRuleCont
 	var p = new(ScalarExpressionContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_scalarExpression
 
@@ -2356,8 +2772,8 @@ func NewScalarExpressionContext(parser antlr.Parser, parent antlr.ParserRuleCont
 
 func (s *ScalarExpressionContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *ScalarExpressionContext) CopyFrom(ctx *ScalarExpressionContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *ScalarExpressionContext) CopyAll(ctx *ScalarExpressionContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
 }
 
 func (s *ScalarExpressionContext) GetRuleContext() antlr.RuleContext {
@@ -2369,7 +2785,7 @@ func (s *ScalarExpressionContext) ToStringTree(ruleNames []string, recog antlr.R
 }
 
 type ScalarExprContext struct {
-	*ScalarExpressionContext
+	ScalarExpressionContext
 	left  IScalarExpressionContext
 	op    antlr.Token
 	right IScalarExpressionContext
@@ -2378,9 +2794,9 @@ type ScalarExprContext struct {
 func NewScalarExprContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ScalarExprContext {
 	var p = new(ScalarExprContext)
 
-	p.ScalarExpressionContext = NewEmptyScalarExpressionContext()
+	InitEmptyScalarExpressionContext(&p.ScalarExpressionContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ScalarExpressionContext))
+	p.CopyAll(ctx.(*ScalarExpressionContext))
 
 	return p
 }
@@ -2402,12 +2818,20 @@ func (s *ScalarExprContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *ScalarExprContext) AllScalarExpression() []IScalarExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IScalarExpressionContext)(nil)).Elem())
-	var tst = make([]IScalarExpressionContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IScalarExpressionContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IScalarExpressionContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IScalarExpressionContext); ok {
 			tst[i] = t.(IScalarExpressionContext)
+			i++
 		}
 	}
 
@@ -2415,7 +2839,17 @@ func (s *ScalarExprContext) AllScalarExpression() []IScalarExpressionContext {
 }
 
 func (s *ScalarExprContext) ScalarExpression(i int) IScalarExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IScalarExpressionContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IScalarExpressionContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -2441,16 +2875,16 @@ func (s *ScalarExprContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type ScalarValContext struct {
-	*ScalarExpressionContext
+	ScalarExpressionContext
 	val IScalarValueContext
 }
 
 func NewScalarValContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ScalarValContext {
 	var p = new(ScalarValContext)
 
-	p.ScalarExpressionContext = NewEmptyScalarExpressionContext()
+	InitEmptyScalarExpressionContext(&p.ScalarExpressionContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ScalarExpressionContext))
+	p.CopyAll(ctx.(*ScalarExpressionContext))
 
 	return p
 }
@@ -2464,7 +2898,13 @@ func (s *ScalarValContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *ScalarValContext) ScalarValue() IScalarValueContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IScalarValueContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IScalarValueContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -2486,16 +2926,16 @@ func (s *ScalarValContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type ScalarParenContext struct {
-	*ScalarExpressionContext
+	ScalarExpressionContext
 	expr IScalarExpressionContext
 }
 
 func NewScalarParenContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *ScalarParenContext {
 	var p = new(ScalarParenContext)
 
-	p.ScalarExpressionContext = NewEmptyScalarExpressionContext()
+	InitEmptyScalarExpressionContext(&p.ScalarExpressionContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ScalarExpressionContext))
+	p.CopyAll(ctx.(*ScalarExpressionContext))
 
 	return p
 }
@@ -2517,7 +2957,13 @@ func (s *ScalarParenContext) RIGHTPAREN() antlr.TerminalNode {
 }
 
 func (s *ScalarParenContext) ScalarExpression() IScalarExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IScalarExpressionContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IScalarExpressionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -2544,34 +2990,21 @@ func (p *CQLParser) ScalarExpression() (localctx IScalarExpressionContext) {
 
 func (p *CQLParser) scalarExpression(_p int) (localctx IScalarExpressionContext) {
 	var _parentctx antlr.ParserRuleContext = p.GetParserRuleContext()
+
 	_parentState := p.GetState()
 	localctx = NewScalarExpressionContext(p, p.GetParserRuleContext(), _parentState)
 	var _prevctx IScalarExpressionContext = localctx
 	var _ antlr.ParserRuleContext = _prevctx // TODO: To prevent unused variable warning.
 	_startState := 20
 	p.EnterRecursionRule(localctx, 20, CQLParserRULE_scalarExpression, _p)
-
-	defer func() {
-		p.UnrollRecursionContexts(_parentctx)
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	var _alt int
 
 	p.EnterOuterAlt(localctx, 1)
 	p.SetState(165)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 
 	switch p.GetTokenStream().LA(1) {
 	case CQLParserBooleanLiteral, CQLParserNumericLiteral, CQLParserIdentifier, CQLParserTemporalLiteral, CQLParserCharacterStringLiteral:
@@ -2594,6 +3027,10 @@ func (p *CQLParser) scalarExpression(_p int) (localctx IScalarExpressionContext)
 		{
 			p.SetState(161)
 			p.Match(CQLParserLEFTPAREN)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		{
 			p.SetState(162)
@@ -2605,16 +3042,26 @@ func (p *CQLParser) scalarExpression(_p int) (localctx IScalarExpressionContext)
 		{
 			p.SetState(163)
 			p.Match(CQLParserRIGHTPAREN)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 
 	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 	p.GetParserRuleContext().SetStop(p.GetTokenStream().LT(-1))
 	p.SetState(172)
 	p.GetErrorHandler().Sync(p)
-	_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 14, p.GetParserRuleContext())
-
+	if p.HasError() {
+		goto errorExit
+	}
+	_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 14, p.GetParserRuleContext())
+	if p.HasError() {
+		goto errorExit
+	}
 	for _alt != 2 && _alt != antlr.ATNInvalidAltNumber {
 		if _alt == 1 {
 			if p.GetParseListeners() != nil {
@@ -2628,7 +3075,8 @@ func (p *CQLParser) scalarExpression(_p int) (localctx IScalarExpressionContext)
 			p.SetState(167)
 
 			if !(p.Precpred(p.GetParserRuleContext(), 1)) {
-				panic(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 1)", ""))
+				p.SetError(antlr.NewFailedPredicateException(p, "p.Precpred(p.GetParserRuleContext(), 1)", ""))
+				goto errorExit
 			}
 			{
 				p.SetState(168)
@@ -2636,6 +3084,10 @@ func (p *CQLParser) scalarExpression(_p int) (localctx IScalarExpressionContext)
 				var _m = p.Match(CQLParserArithmeticOperator)
 
 				localctx.(*ScalarExprContext).op = _m
+				if p.HasError() {
+					// Recognition error - abort rule
+					goto errorExit
+				}
 			}
 			{
 				p.SetState(169)
@@ -2648,10 +3100,26 @@ func (p *CQLParser) scalarExpression(_p int) (localctx IScalarExpressionContext)
 		}
 		p.SetState(174)
 		p.GetErrorHandler().Sync(p)
-		_alt = p.GetInterpreter().AdaptivePredict(p.GetTokenStream(), 14, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
+		_alt = p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 14, p.GetParserRuleContext())
+		if p.HasError() {
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.UnrollRecursionContexts(_parentctx)
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IScalarValueContext is an interface to support dynamic dispatch.
@@ -2660,7 +3128,6 @@ type IScalarValueContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
-
 	// IsScalarValueContext differentiates from other interfaces.
 	IsScalarValueContext()
 }
@@ -2672,9 +3139,14 @@ type ScalarValueContext struct {
 
 func NewEmptyScalarValueContext() *ScalarValueContext {
 	var p = new(ScalarValueContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_scalarValue
 	return p
+}
+
+func InitEmptyScalarValueContext(p *ScalarValueContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_scalarValue
 }
 
 func (*ScalarValueContext) IsScalarValueContext() {}
@@ -2683,7 +3155,6 @@ func NewScalarValueContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 	var p = new(ScalarValueContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_scalarValue
 
@@ -2692,8 +3163,8 @@ func NewScalarValueContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 
 func (s *ScalarValueContext) GetParser() antlr.Parser { return s.parser }
 
-func (s *ScalarValueContext) CopyFrom(ctx *ScalarValueContext) {
-	s.BaseParserRuleContext.CopyFrom(ctx.BaseParserRuleContext)
+func (s *ScalarValueContext) CopyAll(ctx *ScalarValueContext) {
+	s.CopyFrom(&ctx.BaseParserRuleContext)
 }
 
 func (s *ScalarValueContext) GetRuleContext() antlr.RuleContext {
@@ -2705,15 +3176,15 @@ func (s *ScalarValueContext) ToStringTree(ruleNames []string, recog antlr.Recogn
 }
 
 type LiteralTemporalContext struct {
-	*ScalarValueContext
+	ScalarValueContext
 }
 
 func NewLiteralTemporalContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *LiteralTemporalContext {
 	var p = new(LiteralTemporalContext)
 
-	p.ScalarValueContext = NewEmptyScalarValueContext()
+	InitEmptyScalarValueContext(&p.ScalarValueContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ScalarValueContext))
+	p.CopyAll(ctx.(*ScalarValueContext))
 
 	return p
 }
@@ -2723,7 +3194,13 @@ func (s *LiteralTemporalContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *LiteralTemporalContext) TemporalLiteral() ITemporalLiteralContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ITemporalLiteralContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ITemporalLiteralContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -2745,15 +3222,15 @@ func (s *LiteralTemporalContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type LiteralNumericContext struct {
-	*ScalarValueContext
+	ScalarValueContext
 }
 
 func NewLiteralNumericContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *LiteralNumericContext {
 	var p = new(LiteralNumericContext)
 
-	p.ScalarValueContext = NewEmptyScalarValueContext()
+	InitEmptyScalarValueContext(&p.ScalarValueContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ScalarValueContext))
+	p.CopyAll(ctx.(*ScalarValueContext))
 
 	return p
 }
@@ -2763,7 +3240,13 @@ func (s *LiteralNumericContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *LiteralNumericContext) NumericLiteral() INumericLiteralContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*INumericLiteralContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(INumericLiteralContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -2785,15 +3268,15 @@ func (s *LiteralNumericContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type LiteralStringContext struct {
-	*ScalarValueContext
+	ScalarValueContext
 }
 
 func NewLiteralStringContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *LiteralStringContext {
 	var p = new(LiteralStringContext)
 
-	p.ScalarValueContext = NewEmptyScalarValueContext()
+	InitEmptyScalarValueContext(&p.ScalarValueContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ScalarValueContext))
+	p.CopyAll(ctx.(*ScalarValueContext))
 
 	return p
 }
@@ -2803,7 +3286,13 @@ func (s *LiteralStringContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *LiteralStringContext) CharacterLiteral() ICharacterLiteralContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICharacterLiteralContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ICharacterLiteralContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -2825,15 +3314,15 @@ func (s *LiteralStringContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type LiteralNameContext struct {
-	*ScalarValueContext
+	ScalarValueContext
 }
 
 func NewLiteralNameContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *LiteralNameContext {
 	var p = new(LiteralNameContext)
 
-	p.ScalarValueContext = NewEmptyScalarValueContext()
+	InitEmptyScalarValueContext(&p.ScalarValueContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ScalarValueContext))
+	p.CopyAll(ctx.(*ScalarValueContext))
 
 	return p
 }
@@ -2843,7 +3332,13 @@ func (s *LiteralNameContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *LiteralNameContext) PropertyName() IPropertyNameContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPropertyNameContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPropertyNameContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -2865,15 +3360,15 @@ func (s *LiteralNameContext) ExitRule(listener antlr.ParseTreeListener) {
 }
 
 type LiteralBooleanContext struct {
-	*ScalarValueContext
+	ScalarValueContext
 }
 
 func NewLiteralBooleanContext(parser antlr.Parser, ctx antlr.ParserRuleContext) *LiteralBooleanContext {
 	var p = new(LiteralBooleanContext)
 
-	p.ScalarValueContext = NewEmptyScalarValueContext()
+	InitEmptyScalarValueContext(&p.ScalarValueContext)
 	p.parser = parser
-	p.CopyFrom(ctx.(*ScalarValueContext))
+	p.CopyAll(ctx.(*ScalarValueContext))
 
 	return p
 }
@@ -2883,7 +3378,13 @@ func (s *LiteralBooleanContext) GetRuleContext() antlr.RuleContext {
 }
 
 func (s *LiteralBooleanContext) BooleanLiteral() IBooleanLiteralContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IBooleanLiteralContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IBooleanLiteralContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -2907,25 +3408,11 @@ func (s *LiteralBooleanContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) ScalarValue() (localctx IScalarValueContext) {
 	localctx = NewScalarValueContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 22, CQLParserRULE_scalarValue)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.SetState(180)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 
 	switch p.GetTokenStream().LA(1) {
 	case CQLParserIdentifier:
@@ -2969,10 +3456,21 @@ func (p *CQLParser) ScalarValue() (localctx IScalarValueContext) {
 		}
 
 	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IPropertyNameContext is an interface to support dynamic dispatch.
@@ -2981,6 +3479,9 @@ type IPropertyNameContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	Identifier() antlr.TerminalNode
 
 	// IsPropertyNameContext differentiates from other interfaces.
 	IsPropertyNameContext()
@@ -2993,9 +3494,14 @@ type PropertyNameContext struct {
 
 func NewEmptyPropertyNameContext() *PropertyNameContext {
 	var p = new(PropertyNameContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_propertyName
 	return p
+}
+
+func InitEmptyPropertyNameContext(p *PropertyNameContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_propertyName
 }
 
 func (*PropertyNameContext) IsPropertyNameContext() {}
@@ -3004,7 +3510,6 @@ func NewPropertyNameContext(parser antlr.Parser, parent antlr.ParserRuleContext,
 	var p = new(PropertyNameContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_propertyName
 
@@ -3040,30 +3545,27 @@ func (s *PropertyNameContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) PropertyName() (localctx IPropertyNameContext) {
 	localctx = NewPropertyNameContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 24, CQLParserRULE_propertyName)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(182)
 		p.Match(CQLParserIdentifier)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // ICharacterLiteralContext is an interface to support dynamic dispatch.
@@ -3072,6 +3574,9 @@ type ICharacterLiteralContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	CharacterStringLiteral() antlr.TerminalNode
 
 	// IsCharacterLiteralContext differentiates from other interfaces.
 	IsCharacterLiteralContext()
@@ -3084,9 +3589,14 @@ type CharacterLiteralContext struct {
 
 func NewEmptyCharacterLiteralContext() *CharacterLiteralContext {
 	var p = new(CharacterLiteralContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_characterLiteral
 	return p
+}
+
+func InitEmptyCharacterLiteralContext(p *CharacterLiteralContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_characterLiteral
 }
 
 func (*CharacterLiteralContext) IsCharacterLiteralContext() {}
@@ -3095,7 +3605,6 @@ func NewCharacterLiteralContext(parser antlr.Parser, parent antlr.ParserRuleCont
 	var p = new(CharacterLiteralContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_characterLiteral
 
@@ -3131,30 +3640,27 @@ func (s *CharacterLiteralContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) CharacterLiteral() (localctx ICharacterLiteralContext) {
 	localctx = NewCharacterLiteralContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 26, CQLParserRULE_characterLiteral)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(184)
 		p.Match(CQLParserCharacterStringLiteral)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // INumericLiteralContext is an interface to support dynamic dispatch.
@@ -3163,6 +3669,9 @@ type INumericLiteralContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	NumericLiteral() antlr.TerminalNode
 
 	// IsNumericLiteralContext differentiates from other interfaces.
 	IsNumericLiteralContext()
@@ -3175,9 +3684,14 @@ type NumericLiteralContext struct {
 
 func NewEmptyNumericLiteralContext() *NumericLiteralContext {
 	var p = new(NumericLiteralContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_numericLiteral
 	return p
+}
+
+func InitEmptyNumericLiteralContext(p *NumericLiteralContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_numericLiteral
 }
 
 func (*NumericLiteralContext) IsNumericLiteralContext() {}
@@ -3186,7 +3700,6 @@ func NewNumericLiteralContext(parser antlr.Parser, parent antlr.ParserRuleContex
 	var p = new(NumericLiteralContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_numericLiteral
 
@@ -3222,30 +3735,27 @@ func (s *NumericLiteralContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) NumericLiteral() (localctx INumericLiteralContext) {
 	localctx = NewNumericLiteralContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 28, CQLParserRULE_numericLiteral)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(186)
 		p.Match(CQLParserNumericLiteral)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IBooleanLiteralContext is an interface to support dynamic dispatch.
@@ -3254,6 +3764,9 @@ type IBooleanLiteralContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	BooleanLiteral() antlr.TerminalNode
 
 	// IsBooleanLiteralContext differentiates from other interfaces.
 	IsBooleanLiteralContext()
@@ -3266,9 +3779,14 @@ type BooleanLiteralContext struct {
 
 func NewEmptyBooleanLiteralContext() *BooleanLiteralContext {
 	var p = new(BooleanLiteralContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_booleanLiteral
 	return p
+}
+
+func InitEmptyBooleanLiteralContext(p *BooleanLiteralContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_booleanLiteral
 }
 
 func (*BooleanLiteralContext) IsBooleanLiteralContext() {}
@@ -3277,7 +3795,6 @@ func NewBooleanLiteralContext(parser antlr.Parser, parent antlr.ParserRuleContex
 	var p = new(BooleanLiteralContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_booleanLiteral
 
@@ -3313,30 +3830,27 @@ func (s *BooleanLiteralContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) BooleanLiteral() (localctx IBooleanLiteralContext) {
 	localctx = NewBooleanLiteralContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 30, CQLParserRULE_booleanLiteral)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(188)
 		p.Match(CQLParserBooleanLiteral)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // ITemporalLiteralContext is an interface to support dynamic dispatch.
@@ -3345,6 +3859,9 @@ type ITemporalLiteralContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	TemporalLiteral() antlr.TerminalNode
 
 	// IsTemporalLiteralContext differentiates from other interfaces.
 	IsTemporalLiteralContext()
@@ -3357,9 +3874,14 @@ type TemporalLiteralContext struct {
 
 func NewEmptyTemporalLiteralContext() *TemporalLiteralContext {
 	var p = new(TemporalLiteralContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_temporalLiteral
 	return p
+}
+
+func InitEmptyTemporalLiteralContext(p *TemporalLiteralContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_temporalLiteral
 }
 
 func (*TemporalLiteralContext) IsTemporalLiteralContext() {}
@@ -3368,7 +3890,6 @@ func NewTemporalLiteralContext(parser antlr.Parser, parent antlr.ParserRuleConte
 	var p = new(TemporalLiteralContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_temporalLiteral
 
@@ -3404,30 +3925,27 @@ func (s *TemporalLiteralContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) TemporalLiteral() (localctx ITemporalLiteralContext) {
 	localctx = NewTemporalLiteralContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 32, CQLParserRULE_temporalLiteral)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(190)
 		p.Match(CQLParserTemporalLiteral)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // ISpatialPredicateContext is an interface to support dynamic dispatch.
@@ -3436,6 +3954,14 @@ type ISpatialPredicateContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	SpatialOperator() antlr.TerminalNode
+	LEFTPAREN() antlr.TerminalNode
+	AllGeomExpression() []IGeomExpressionContext
+	GeomExpression(i int) IGeomExpressionContext
+	COMMA() antlr.TerminalNode
+	RIGHTPAREN() antlr.TerminalNode
 
 	// IsSpatialPredicateContext differentiates from other interfaces.
 	IsSpatialPredicateContext()
@@ -3448,9 +3974,14 @@ type SpatialPredicateContext struct {
 
 func NewEmptySpatialPredicateContext() *SpatialPredicateContext {
 	var p = new(SpatialPredicateContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_spatialPredicate
 	return p
+}
+
+func InitEmptySpatialPredicateContext(p *SpatialPredicateContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_spatialPredicate
 }
 
 func (*SpatialPredicateContext) IsSpatialPredicateContext() {}
@@ -3459,7 +3990,6 @@ func NewSpatialPredicateContext(parser antlr.Parser, parent antlr.ParserRuleCont
 	var p = new(SpatialPredicateContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_spatialPredicate
 
@@ -3477,12 +4007,20 @@ func (s *SpatialPredicateContext) LEFTPAREN() antlr.TerminalNode {
 }
 
 func (s *SpatialPredicateContext) AllGeomExpression() []IGeomExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IGeomExpressionContext)(nil)).Elem())
-	var tst = make([]IGeomExpressionContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IGeomExpressionContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IGeomExpressionContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IGeomExpressionContext); ok {
 			tst[i] = t.(IGeomExpressionContext)
+			i++
 		}
 	}
 
@@ -3490,7 +4028,17 @@ func (s *SpatialPredicateContext) AllGeomExpression() []IGeomExpressionContext {
 }
 
 func (s *SpatialPredicateContext) GeomExpression(i int) IGeomExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IGeomExpressionContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IGeomExpressionContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -3530,31 +4078,22 @@ func (s *SpatialPredicateContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) SpatialPredicate() (localctx ISpatialPredicateContext) {
 	localctx = NewSpatialPredicateContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 34, CQLParserRULE_spatialPredicate)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(192)
 		p.Match(CQLParserSpatialOperator)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(193)
 		p.Match(CQLParserLEFTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(194)
@@ -3563,6 +4102,10 @@ func (p *CQLParser) SpatialPredicate() (localctx ISpatialPredicateContext) {
 	{
 		p.SetState(195)
 		p.Match(CQLParserCOMMA)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(196)
@@ -3571,9 +4114,23 @@ func (p *CQLParser) SpatialPredicate() (localctx ISpatialPredicateContext) {
 	{
 		p.SetState(197)
 		p.Match(CQLParserRIGHTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IDistancePredicateContext is an interface to support dynamic dispatch.
@@ -3582,6 +4139,16 @@ type IDistancePredicateContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	DistanceOperator() antlr.TerminalNode
+	LEFTPAREN() antlr.TerminalNode
+	AllGeomExpression() []IGeomExpressionContext
+	GeomExpression(i int) IGeomExpressionContext
+	AllCOMMA() []antlr.TerminalNode
+	COMMA(i int) antlr.TerminalNode
+	NumericLiteral() antlr.TerminalNode
+	RIGHTPAREN() antlr.TerminalNode
 
 	// IsDistancePredicateContext differentiates from other interfaces.
 	IsDistancePredicateContext()
@@ -3594,9 +4161,14 @@ type DistancePredicateContext struct {
 
 func NewEmptyDistancePredicateContext() *DistancePredicateContext {
 	var p = new(DistancePredicateContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_distancePredicate
 	return p
+}
+
+func InitEmptyDistancePredicateContext(p *DistancePredicateContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_distancePredicate
 }
 
 func (*DistancePredicateContext) IsDistancePredicateContext() {}
@@ -3605,7 +4177,6 @@ func NewDistancePredicateContext(parser antlr.Parser, parent antlr.ParserRuleCon
 	var p = new(DistancePredicateContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_distancePredicate
 
@@ -3623,12 +4194,20 @@ func (s *DistancePredicateContext) LEFTPAREN() antlr.TerminalNode {
 }
 
 func (s *DistancePredicateContext) AllGeomExpression() []IGeomExpressionContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IGeomExpressionContext)(nil)).Elem())
-	var tst = make([]IGeomExpressionContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IGeomExpressionContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IGeomExpressionContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IGeomExpressionContext); ok {
 			tst[i] = t.(IGeomExpressionContext)
+			i++
 		}
 	}
 
@@ -3636,7 +4215,17 @@ func (s *DistancePredicateContext) AllGeomExpression() []IGeomExpressionContext 
 }
 
 func (s *DistancePredicateContext) GeomExpression(i int) IGeomExpressionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IGeomExpressionContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IGeomExpressionContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -3684,31 +4273,22 @@ func (s *DistancePredicateContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) DistancePredicate() (localctx IDistancePredicateContext) {
 	localctx = NewDistancePredicateContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 36, CQLParserRULE_distancePredicate)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(199)
 		p.Match(CQLParserDistanceOperator)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(200)
 		p.Match(CQLParserLEFTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(201)
@@ -3717,6 +4297,10 @@ func (p *CQLParser) DistancePredicate() (localctx IDistancePredicateContext) {
 	{
 		p.SetState(202)
 		p.Match(CQLParserCOMMA)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(203)
@@ -3725,17 +4309,39 @@ func (p *CQLParser) DistancePredicate() (localctx IDistancePredicateContext) {
 	{
 		p.SetState(204)
 		p.Match(CQLParserCOMMA)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(205)
 		p.Match(CQLParserNumericLiteral)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(206)
 		p.Match(CQLParserRIGHTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IGeomExpressionContext is an interface to support dynamic dispatch.
@@ -3744,6 +4350,10 @@ type IGeomExpressionContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	PropertyName() IPropertyNameContext
+	GeomLiteral() IGeomLiteralContext
 
 	// IsGeomExpressionContext differentiates from other interfaces.
 	IsGeomExpressionContext()
@@ -3756,9 +4366,14 @@ type GeomExpressionContext struct {
 
 func NewEmptyGeomExpressionContext() *GeomExpressionContext {
 	var p = new(GeomExpressionContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_geomExpression
 	return p
+}
+
+func InitEmptyGeomExpressionContext(p *GeomExpressionContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_geomExpression
 }
 
 func (*GeomExpressionContext) IsGeomExpressionContext() {}
@@ -3767,7 +4382,6 @@ func NewGeomExpressionContext(parser antlr.Parser, parent antlr.ParserRuleContex
 	var p = new(GeomExpressionContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_geomExpression
 
@@ -3777,7 +4391,13 @@ func NewGeomExpressionContext(parser antlr.Parser, parent antlr.ParserRuleContex
 func (s *GeomExpressionContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *GeomExpressionContext) PropertyName() IPropertyNameContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPropertyNameContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPropertyNameContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -3787,7 +4407,13 @@ func (s *GeomExpressionContext) PropertyName() IPropertyNameContext {
 }
 
 func (s *GeomExpressionContext) GeomLiteral() IGeomLiteralContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IGeomLiteralContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IGeomLiteralContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -3819,25 +4445,11 @@ func (s *GeomExpressionContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) GeomExpression() (localctx IGeomExpressionContext) {
 	localctx = NewGeomExpressionContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 38, CQLParserRULE_geomExpression)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.SetState(210)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 
 	switch p.GetTokenStream().LA(1) {
 	case CQLParserIdentifier:
@@ -3855,10 +4467,21 @@ func (p *CQLParser) GeomExpression() (localctx IGeomExpressionContext) {
 		}
 
 	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IGeomLiteralContext is an interface to support dynamic dispatch.
@@ -3867,6 +4490,16 @@ type IGeomLiteralContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	Point() IPointContext
+	Linestring() ILinestringContext
+	Polygon() IPolygonContext
+	MultiPoint() IMultiPointContext
+	MultiLinestring() IMultiLinestringContext
+	MultiPolygon() IMultiPolygonContext
+	GeometryCollection() IGeometryCollectionContext
+	Envelope() IEnvelopeContext
 
 	// IsGeomLiteralContext differentiates from other interfaces.
 	IsGeomLiteralContext()
@@ -3879,9 +4512,14 @@ type GeomLiteralContext struct {
 
 func NewEmptyGeomLiteralContext() *GeomLiteralContext {
 	var p = new(GeomLiteralContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_geomLiteral
 	return p
+}
+
+func InitEmptyGeomLiteralContext(p *GeomLiteralContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_geomLiteral
 }
 
 func (*GeomLiteralContext) IsGeomLiteralContext() {}
@@ -3890,7 +4528,6 @@ func NewGeomLiteralContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 	var p = new(GeomLiteralContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_geomLiteral
 
@@ -3900,7 +4537,13 @@ func NewGeomLiteralContext(parser antlr.Parser, parent antlr.ParserRuleContext, 
 func (s *GeomLiteralContext) GetParser() antlr.Parser { return s.parser }
 
 func (s *GeomLiteralContext) Point() IPointContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPointContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPointContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -3910,7 +4553,13 @@ func (s *GeomLiteralContext) Point() IPointContext {
 }
 
 func (s *GeomLiteralContext) Linestring() ILinestringContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ILinestringContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ILinestringContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -3920,7 +4569,13 @@ func (s *GeomLiteralContext) Linestring() ILinestringContext {
 }
 
 func (s *GeomLiteralContext) Polygon() IPolygonContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPolygonContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPolygonContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -3930,7 +4585,13 @@ func (s *GeomLiteralContext) Polygon() IPolygonContext {
 }
 
 func (s *GeomLiteralContext) MultiPoint() IMultiPointContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IMultiPointContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IMultiPointContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -3940,7 +4601,13 @@ func (s *GeomLiteralContext) MultiPoint() IMultiPointContext {
 }
 
 func (s *GeomLiteralContext) MultiLinestring() IMultiLinestringContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IMultiLinestringContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IMultiLinestringContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -3950,7 +4617,13 @@ func (s *GeomLiteralContext) MultiLinestring() IMultiLinestringContext {
 }
 
 func (s *GeomLiteralContext) MultiPolygon() IMultiPolygonContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IMultiPolygonContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IMultiPolygonContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -3960,7 +4633,13 @@ func (s *GeomLiteralContext) MultiPolygon() IMultiPolygonContext {
 }
 
 func (s *GeomLiteralContext) GeometryCollection() IGeometryCollectionContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IGeometryCollectionContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IGeometryCollectionContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -3970,7 +4649,13 @@ func (s *GeomLiteralContext) GeometryCollection() IGeometryCollectionContext {
 }
 
 func (s *GeomLiteralContext) Envelope() IEnvelopeContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IEnvelopeContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IEnvelopeContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -4002,25 +4687,11 @@ func (s *GeomLiteralContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) GeomLiteral() (localctx IGeomLiteralContext) {
 	localctx = NewGeomLiteralContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 40, CQLParserRULE_geomLiteral)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.SetState(220)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 
 	switch p.GetTokenStream().LA(1) {
 	case CQLParserPOINT:
@@ -4080,10 +4751,21 @@ func (p *CQLParser) GeomLiteral() (localctx IGeomLiteralContext) {
 		}
 
 	default:
-		panic(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
+		goto errorExit
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IPointContext is an interface to support dynamic dispatch.
@@ -4092,6 +4774,10 @@ type IPointContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	POINT() antlr.TerminalNode
+	PointList() IPointListContext
 
 	// IsPointContext differentiates from other interfaces.
 	IsPointContext()
@@ -4104,9 +4790,14 @@ type PointContext struct {
 
 func NewEmptyPointContext() *PointContext {
 	var p = new(PointContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_point
 	return p
+}
+
+func InitEmptyPointContext(p *PointContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_point
 }
 
 func (*PointContext) IsPointContext() {}
@@ -4115,7 +4806,6 @@ func NewPointContext(parser antlr.Parser, parent antlr.ParserRuleContext, invoki
 	var p = new(PointContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_point
 
@@ -4129,7 +4819,13 @@ func (s *PointContext) POINT() antlr.TerminalNode {
 }
 
 func (s *PointContext) PointList() IPointListContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPointListContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPointListContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -4161,34 +4857,31 @@ func (s *PointContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) Point() (localctx IPointContext) {
 	localctx = NewPointContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 42, CQLParserRULE_point)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(222)
 		p.Match(CQLParserPOINT)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(223)
 		p.PointList()
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IPointListContext is an interface to support dynamic dispatch.
@@ -4197,6 +4890,11 @@ type IPointListContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	LEFTPAREN() antlr.TerminalNode
+	Coordinate() ICoordinateContext
+	RIGHTPAREN() antlr.TerminalNode
 
 	// IsPointListContext differentiates from other interfaces.
 	IsPointListContext()
@@ -4209,9 +4907,14 @@ type PointListContext struct {
 
 func NewEmptyPointListContext() *PointListContext {
 	var p = new(PointListContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_pointList
 	return p
+}
+
+func InitEmptyPointListContext(p *PointListContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_pointList
 }
 
 func (*PointListContext) IsPointListContext() {}
@@ -4220,7 +4923,6 @@ func NewPointListContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	var p = new(PointListContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_pointList
 
@@ -4234,7 +4936,13 @@ func (s *PointListContext) LEFTPAREN() antlr.TerminalNode {
 }
 
 func (s *PointListContext) Coordinate() ICoordinateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICoordinateContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ICoordinateContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -4270,27 +4978,14 @@ func (s *PointListContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) PointList() (localctx IPointListContext) {
 	localctx = NewPointListContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 44, CQLParserRULE_pointList)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(225)
 		p.Match(CQLParserLEFTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(226)
@@ -4299,9 +4994,23 @@ func (p *CQLParser) PointList() (localctx IPointListContext) {
 	{
 		p.SetState(227)
 		p.Match(CQLParserRIGHTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // ILinestringContext is an interface to support dynamic dispatch.
@@ -4310,6 +5019,10 @@ type ILinestringContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	LINESTRING() antlr.TerminalNode
+	CoordList() ICoordListContext
 
 	// IsLinestringContext differentiates from other interfaces.
 	IsLinestringContext()
@@ -4322,9 +5035,14 @@ type LinestringContext struct {
 
 func NewEmptyLinestringContext() *LinestringContext {
 	var p = new(LinestringContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_linestring
 	return p
+}
+
+func InitEmptyLinestringContext(p *LinestringContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_linestring
 }
 
 func (*LinestringContext) IsLinestringContext() {}
@@ -4333,7 +5051,6 @@ func NewLinestringContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 	var p = new(LinestringContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_linestring
 
@@ -4347,7 +5064,13 @@ func (s *LinestringContext) LINESTRING() antlr.TerminalNode {
 }
 
 func (s *LinestringContext) CoordList() ICoordListContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICoordListContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ICoordListContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -4379,34 +5102,31 @@ func (s *LinestringContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) Linestring() (localctx ILinestringContext) {
 	localctx = NewLinestringContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 46, CQLParserRULE_linestring)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(229)
 		p.Match(CQLParserLINESTRING)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(230)
 		p.CoordList()
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IPolygonContext is an interface to support dynamic dispatch.
@@ -4415,6 +5135,10 @@ type IPolygonContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	POLYGON() antlr.TerminalNode
+	PolygonDef() IPolygonDefContext
 
 	// IsPolygonContext differentiates from other interfaces.
 	IsPolygonContext()
@@ -4427,9 +5151,14 @@ type PolygonContext struct {
 
 func NewEmptyPolygonContext() *PolygonContext {
 	var p = new(PolygonContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_polygon
 	return p
+}
+
+func InitEmptyPolygonContext(p *PolygonContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_polygon
 }
 
 func (*PolygonContext) IsPolygonContext() {}
@@ -4438,7 +5167,6 @@ func NewPolygonContext(parser antlr.Parser, parent antlr.ParserRuleContext, invo
 	var p = new(PolygonContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_polygon
 
@@ -4452,7 +5180,13 @@ func (s *PolygonContext) POLYGON() antlr.TerminalNode {
 }
 
 func (s *PolygonContext) PolygonDef() IPolygonDefContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPolygonDefContext)(nil)).Elem(), 0)
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPolygonDefContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -4484,34 +5218,31 @@ func (s *PolygonContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) Polygon() (localctx IPolygonContext) {
 	localctx = NewPolygonContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 48, CQLParserRULE_polygon)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(232)
 		p.Match(CQLParserPOLYGON)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(233)
 		p.PolygonDef()
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IPolygonDefContext is an interface to support dynamic dispatch.
@@ -4520,6 +5251,14 @@ type IPolygonDefContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	LEFTPAREN() antlr.TerminalNode
+	AllCoordList() []ICoordListContext
+	CoordList(i int) ICoordListContext
+	RIGHTPAREN() antlr.TerminalNode
+	AllCOMMA() []antlr.TerminalNode
+	COMMA(i int) antlr.TerminalNode
 
 	// IsPolygonDefContext differentiates from other interfaces.
 	IsPolygonDefContext()
@@ -4532,9 +5271,14 @@ type PolygonDefContext struct {
 
 func NewEmptyPolygonDefContext() *PolygonDefContext {
 	var p = new(PolygonDefContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_polygonDef
 	return p
+}
+
+func InitEmptyPolygonDefContext(p *PolygonDefContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_polygonDef
 }
 
 func (*PolygonDefContext) IsPolygonDefContext() {}
@@ -4543,7 +5287,6 @@ func NewPolygonDefContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 	var p = new(PolygonDefContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_polygonDef
 
@@ -4557,12 +5300,20 @@ func (s *PolygonDefContext) LEFTPAREN() antlr.TerminalNode {
 }
 
 func (s *PolygonDefContext) AllCoordList() []ICoordListContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*ICoordListContext)(nil)).Elem())
-	var tst = make([]ICoordListContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(ICoordListContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]ICoordListContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(ICoordListContext); ok {
 			tst[i] = t.(ICoordListContext)
+			i++
 		}
 	}
 
@@ -4570,7 +5321,17 @@ func (s *PolygonDefContext) AllCoordList() []ICoordListContext {
 }
 
 func (s *PolygonDefContext) CoordList(i int) ICoordListContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICoordListContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ICoordListContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -4616,26 +5377,14 @@ func (p *CQLParser) PolygonDef() (localctx IPolygonDefContext) {
 	p.EnterRule(localctx, 50, CQLParserRULE_polygonDef)
 	var _la int
 
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(235)
 		p.Match(CQLParserLEFTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(236)
@@ -4643,12 +5392,19 @@ func (p *CQLParser) PolygonDef() (localctx IPolygonDefContext) {
 	}
 	p.SetState(241)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == CQLParserCOMMA {
 		{
 			p.SetState(237)
 			p.Match(CQLParserCOMMA)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		{
 			p.SetState(238)
@@ -4657,14 +5413,31 @@ func (p *CQLParser) PolygonDef() (localctx IPolygonDefContext) {
 
 		p.SetState(243)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
 		p.SetState(244)
 		p.Match(CQLParserRIGHTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IMultiPointContext is an interface to support dynamic dispatch.
@@ -4673,6 +5446,15 @@ type IMultiPointContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	MULTIPOINT() antlr.TerminalNode
+	LEFTPAREN() antlr.TerminalNode
+	AllPointList() []IPointListContext
+	PointList(i int) IPointListContext
+	RIGHTPAREN() antlr.TerminalNode
+	AllCOMMA() []antlr.TerminalNode
+	COMMA(i int) antlr.TerminalNode
 
 	// IsMultiPointContext differentiates from other interfaces.
 	IsMultiPointContext()
@@ -4685,9 +5467,14 @@ type MultiPointContext struct {
 
 func NewEmptyMultiPointContext() *MultiPointContext {
 	var p = new(MultiPointContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_multiPoint
 	return p
+}
+
+func InitEmptyMultiPointContext(p *MultiPointContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_multiPoint
 }
 
 func (*MultiPointContext) IsMultiPointContext() {}
@@ -4696,7 +5483,6 @@ func NewMultiPointContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 	var p = new(MultiPointContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_multiPoint
 
@@ -4714,12 +5500,20 @@ func (s *MultiPointContext) LEFTPAREN() antlr.TerminalNode {
 }
 
 func (s *MultiPointContext) AllPointList() []IPointListContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IPointListContext)(nil)).Elem())
-	var tst = make([]IPointListContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IPointListContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IPointListContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IPointListContext); ok {
 			tst[i] = t.(IPointListContext)
+			i++
 		}
 	}
 
@@ -4727,7 +5521,17 @@ func (s *MultiPointContext) AllPointList() []IPointListContext {
 }
 
 func (s *MultiPointContext) PointList(i int) IPointListContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPointListContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPointListContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -4773,30 +5577,22 @@ func (p *CQLParser) MultiPoint() (localctx IMultiPointContext) {
 	p.EnterRule(localctx, 52, CQLParserRULE_multiPoint)
 	var _la int
 
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(246)
 		p.Match(CQLParserMULTIPOINT)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(247)
 		p.Match(CQLParserLEFTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(248)
@@ -4804,12 +5600,19 @@ func (p *CQLParser) MultiPoint() (localctx IMultiPointContext) {
 	}
 	p.SetState(253)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == CQLParserCOMMA {
 		{
 			p.SetState(249)
 			p.Match(CQLParserCOMMA)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		{
 			p.SetState(250)
@@ -4818,14 +5621,31 @@ func (p *CQLParser) MultiPoint() (localctx IMultiPointContext) {
 
 		p.SetState(255)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
 		p.SetState(256)
 		p.Match(CQLParserRIGHTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IMultiLinestringContext is an interface to support dynamic dispatch.
@@ -4834,6 +5654,15 @@ type IMultiLinestringContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	MULTILINESTRING() antlr.TerminalNode
+	LEFTPAREN() antlr.TerminalNode
+	AllCoordList() []ICoordListContext
+	CoordList(i int) ICoordListContext
+	RIGHTPAREN() antlr.TerminalNode
+	AllCOMMA() []antlr.TerminalNode
+	COMMA(i int) antlr.TerminalNode
 
 	// IsMultiLinestringContext differentiates from other interfaces.
 	IsMultiLinestringContext()
@@ -4846,9 +5675,14 @@ type MultiLinestringContext struct {
 
 func NewEmptyMultiLinestringContext() *MultiLinestringContext {
 	var p = new(MultiLinestringContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_multiLinestring
 	return p
+}
+
+func InitEmptyMultiLinestringContext(p *MultiLinestringContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_multiLinestring
 }
 
 func (*MultiLinestringContext) IsMultiLinestringContext() {}
@@ -4857,7 +5691,6 @@ func NewMultiLinestringContext(parser antlr.Parser, parent antlr.ParserRuleConte
 	var p = new(MultiLinestringContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_multiLinestring
 
@@ -4875,12 +5708,20 @@ func (s *MultiLinestringContext) LEFTPAREN() antlr.TerminalNode {
 }
 
 func (s *MultiLinestringContext) AllCoordList() []ICoordListContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*ICoordListContext)(nil)).Elem())
-	var tst = make([]ICoordListContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(ICoordListContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]ICoordListContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(ICoordListContext); ok {
 			tst[i] = t.(ICoordListContext)
+			i++
 		}
 	}
 
@@ -4888,7 +5729,17 @@ func (s *MultiLinestringContext) AllCoordList() []ICoordListContext {
 }
 
 func (s *MultiLinestringContext) CoordList(i int) ICoordListContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICoordListContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ICoordListContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -4934,30 +5785,22 @@ func (p *CQLParser) MultiLinestring() (localctx IMultiLinestringContext) {
 	p.EnterRule(localctx, 54, CQLParserRULE_multiLinestring)
 	var _la int
 
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(258)
 		p.Match(CQLParserMULTILINESTRING)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(259)
 		p.Match(CQLParserLEFTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(260)
@@ -4965,12 +5808,19 @@ func (p *CQLParser) MultiLinestring() (localctx IMultiLinestringContext) {
 	}
 	p.SetState(265)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == CQLParserCOMMA {
 		{
 			p.SetState(261)
 			p.Match(CQLParserCOMMA)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		{
 			p.SetState(262)
@@ -4979,14 +5829,31 @@ func (p *CQLParser) MultiLinestring() (localctx IMultiLinestringContext) {
 
 		p.SetState(267)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
 		p.SetState(268)
 		p.Match(CQLParserRIGHTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IMultiPolygonContext is an interface to support dynamic dispatch.
@@ -4995,6 +5862,15 @@ type IMultiPolygonContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	MULTIPOLYGON() antlr.TerminalNode
+	LEFTPAREN() antlr.TerminalNode
+	AllPolygonDef() []IPolygonDefContext
+	PolygonDef(i int) IPolygonDefContext
+	RIGHTPAREN() antlr.TerminalNode
+	AllCOMMA() []antlr.TerminalNode
+	COMMA(i int) antlr.TerminalNode
 
 	// IsMultiPolygonContext differentiates from other interfaces.
 	IsMultiPolygonContext()
@@ -5007,9 +5883,14 @@ type MultiPolygonContext struct {
 
 func NewEmptyMultiPolygonContext() *MultiPolygonContext {
 	var p = new(MultiPolygonContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_multiPolygon
 	return p
+}
+
+func InitEmptyMultiPolygonContext(p *MultiPolygonContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_multiPolygon
 }
 
 func (*MultiPolygonContext) IsMultiPolygonContext() {}
@@ -5018,7 +5899,6 @@ func NewMultiPolygonContext(parser antlr.Parser, parent antlr.ParserRuleContext,
 	var p = new(MultiPolygonContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_multiPolygon
 
@@ -5036,12 +5916,20 @@ func (s *MultiPolygonContext) LEFTPAREN() antlr.TerminalNode {
 }
 
 func (s *MultiPolygonContext) AllPolygonDef() []IPolygonDefContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IPolygonDefContext)(nil)).Elem())
-	var tst = make([]IPolygonDefContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IPolygonDefContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IPolygonDefContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IPolygonDefContext); ok {
 			tst[i] = t.(IPolygonDefContext)
+			i++
 		}
 	}
 
@@ -5049,7 +5937,17 @@ func (s *MultiPolygonContext) AllPolygonDef() []IPolygonDefContext {
 }
 
 func (s *MultiPolygonContext) PolygonDef(i int) IPolygonDefContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IPolygonDefContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IPolygonDefContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -5095,30 +5993,22 @@ func (p *CQLParser) MultiPolygon() (localctx IMultiPolygonContext) {
 	p.EnterRule(localctx, 56, CQLParserRULE_multiPolygon)
 	var _la int
 
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(270)
 		p.Match(CQLParserMULTIPOLYGON)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(271)
 		p.Match(CQLParserLEFTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(272)
@@ -5126,12 +6016,19 @@ func (p *CQLParser) MultiPolygon() (localctx IMultiPolygonContext) {
 	}
 	p.SetState(277)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == CQLParserCOMMA {
 		{
 			p.SetState(273)
 			p.Match(CQLParserCOMMA)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		{
 			p.SetState(274)
@@ -5140,14 +6037,31 @@ func (p *CQLParser) MultiPolygon() (localctx IMultiPolygonContext) {
 
 		p.SetState(279)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
 		p.SetState(280)
 		p.Match(CQLParserRIGHTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IGeometryCollectionContext is an interface to support dynamic dispatch.
@@ -5156,6 +6070,15 @@ type IGeometryCollectionContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	GEOMETRYCOLLECTION() antlr.TerminalNode
+	LEFTPAREN() antlr.TerminalNode
+	AllGeomLiteral() []IGeomLiteralContext
+	GeomLiteral(i int) IGeomLiteralContext
+	RIGHTPAREN() antlr.TerminalNode
+	AllCOMMA() []antlr.TerminalNode
+	COMMA(i int) antlr.TerminalNode
 
 	// IsGeometryCollectionContext differentiates from other interfaces.
 	IsGeometryCollectionContext()
@@ -5168,9 +6091,14 @@ type GeometryCollectionContext struct {
 
 func NewEmptyGeometryCollectionContext() *GeometryCollectionContext {
 	var p = new(GeometryCollectionContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_geometryCollection
 	return p
+}
+
+func InitEmptyGeometryCollectionContext(p *GeometryCollectionContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_geometryCollection
 }
 
 func (*GeometryCollectionContext) IsGeometryCollectionContext() {}
@@ -5179,7 +6107,6 @@ func NewGeometryCollectionContext(parser antlr.Parser, parent antlr.ParserRuleCo
 	var p = new(GeometryCollectionContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_geometryCollection
 
@@ -5197,12 +6124,20 @@ func (s *GeometryCollectionContext) LEFTPAREN() antlr.TerminalNode {
 }
 
 func (s *GeometryCollectionContext) AllGeomLiteral() []IGeomLiteralContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*IGeomLiteralContext)(nil)).Elem())
-	var tst = make([]IGeomLiteralContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IGeomLiteralContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]IGeomLiteralContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IGeomLiteralContext); ok {
 			tst[i] = t.(IGeomLiteralContext)
+			i++
 		}
 	}
 
@@ -5210,7 +6145,17 @@ func (s *GeometryCollectionContext) AllGeomLiteral() []IGeomLiteralContext {
 }
 
 func (s *GeometryCollectionContext) GeomLiteral(i int) IGeomLiteralContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*IGeomLiteralContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IGeomLiteralContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -5256,30 +6201,22 @@ func (p *CQLParser) GeometryCollection() (localctx IGeometryCollectionContext) {
 	p.EnterRule(localctx, 58, CQLParserRULE_geometryCollection)
 	var _la int
 
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(282)
 		p.Match(CQLParserGEOMETRYCOLLECTION)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(283)
 		p.Match(CQLParserLEFTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(284)
@@ -5287,12 +6224,19 @@ func (p *CQLParser) GeometryCollection() (localctx IGeometryCollectionContext) {
 	}
 	p.SetState(289)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == CQLParserCOMMA {
 		{
 			p.SetState(285)
 			p.Match(CQLParserCOMMA)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		{
 			p.SetState(286)
@@ -5301,14 +6245,31 @@ func (p *CQLParser) GeometryCollection() (localctx IGeometryCollectionContext) {
 
 		p.SetState(291)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
 		p.SetState(292)
 		p.Match(CQLParserRIGHTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // IEnvelopeContext is an interface to support dynamic dispatch.
@@ -5317,6 +6278,15 @@ type IEnvelopeContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	ENVELOPE() antlr.TerminalNode
+	LEFTPAREN() antlr.TerminalNode
+	AllNumericLiteral() []antlr.TerminalNode
+	NumericLiteral(i int) antlr.TerminalNode
+	AllCOMMA() []antlr.TerminalNode
+	COMMA(i int) antlr.TerminalNode
+	RIGHTPAREN() antlr.TerminalNode
 
 	// IsEnvelopeContext differentiates from other interfaces.
 	IsEnvelopeContext()
@@ -5329,9 +6299,14 @@ type EnvelopeContext struct {
 
 func NewEmptyEnvelopeContext() *EnvelopeContext {
 	var p = new(EnvelopeContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_envelope
 	return p
+}
+
+func InitEmptyEnvelopeContext(p *EnvelopeContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_envelope
 }
 
 func (*EnvelopeContext) IsEnvelopeContext() {}
@@ -5340,7 +6315,6 @@ func NewEnvelopeContext(parser antlr.Parser, parent antlr.ParserRuleContext, inv
 	var p = new(EnvelopeContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_envelope
 
@@ -5400,66 +6374,99 @@ func (s *EnvelopeContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) Envelope() (localctx IEnvelopeContext) {
 	localctx = NewEnvelopeContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 60, CQLParserRULE_envelope)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(294)
 		p.Match(CQLParserENVELOPE)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(295)
 		p.Match(CQLParserLEFTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(296)
 		p.Match(CQLParserNumericLiteral)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(297)
 		p.Match(CQLParserCOMMA)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(298)
 		p.Match(CQLParserNumericLiteral)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(299)
 		p.Match(CQLParserCOMMA)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(300)
 		p.Match(CQLParserNumericLiteral)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(301)
 		p.Match(CQLParserCOMMA)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(302)
 		p.Match(CQLParserNumericLiteral)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(303)
 		p.Match(CQLParserRIGHTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // ICoordListContext is an interface to support dynamic dispatch.
@@ -5468,6 +6475,14 @@ type ICoordListContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	LEFTPAREN() antlr.TerminalNode
+	AllCoordinate() []ICoordinateContext
+	Coordinate(i int) ICoordinateContext
+	RIGHTPAREN() antlr.TerminalNode
+	AllCOMMA() []antlr.TerminalNode
+	COMMA(i int) antlr.TerminalNode
 
 	// IsCoordListContext differentiates from other interfaces.
 	IsCoordListContext()
@@ -5480,9 +6495,14 @@ type CoordListContext struct {
 
 func NewEmptyCoordListContext() *CoordListContext {
 	var p = new(CoordListContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_coordList
 	return p
+}
+
+func InitEmptyCoordListContext(p *CoordListContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_coordList
 }
 
 func (*CoordListContext) IsCoordListContext() {}
@@ -5491,7 +6511,6 @@ func NewCoordListContext(parser antlr.Parser, parent antlr.ParserRuleContext, in
 	var p = new(CoordListContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_coordList
 
@@ -5505,12 +6524,20 @@ func (s *CoordListContext) LEFTPAREN() antlr.TerminalNode {
 }
 
 func (s *CoordListContext) AllCoordinate() []ICoordinateContext {
-	var ts = s.GetTypedRuleContexts(reflect.TypeOf((*ICoordinateContext)(nil)).Elem())
-	var tst = make([]ICoordinateContext, len(ts))
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(ICoordinateContext); ok {
+			len++
+		}
+	}
 
-	for i, t := range ts {
-		if t != nil {
+	tst := make([]ICoordinateContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(ICoordinateContext); ok {
 			tst[i] = t.(ICoordinateContext)
+			i++
 		}
 	}
 
@@ -5518,7 +6545,17 @@ func (s *CoordListContext) AllCoordinate() []ICoordinateContext {
 }
 
 func (s *CoordListContext) Coordinate(i int) ICoordinateContext {
-	var t = s.GetTypedRuleContext(reflect.TypeOf((*ICoordinateContext)(nil)).Elem(), i)
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ICoordinateContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
 
 	if t == nil {
 		return nil
@@ -5564,26 +6601,14 @@ func (p *CQLParser) CoordList() (localctx ICoordListContext) {
 	p.EnterRule(localctx, 62, CQLParserRULE_coordList)
 	var _la int
 
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(305)
 		p.Match(CQLParserLEFTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(306)
@@ -5591,12 +6616,19 @@ func (p *CQLParser) CoordList() (localctx ICoordListContext) {
 	}
 	p.SetState(311)
 	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
 	_la = p.GetTokenStream().LA(1)
 
 	for _la == CQLParserCOMMA {
 		{
 			p.SetState(307)
 			p.Match(CQLParserCOMMA)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
 		}
 		{
 			p.SetState(308)
@@ -5605,14 +6637,31 @@ func (p *CQLParser) CoordList() (localctx ICoordListContext) {
 
 		p.SetState(313)
 		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
 		p.SetState(314)
 		p.Match(CQLParserRIGHTPAREN)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 // ICoordinateContext is an interface to support dynamic dispatch.
@@ -5621,6 +6670,10 @@ type ICoordinateContext interface {
 
 	// GetParser returns the parser.
 	GetParser() antlr.Parser
+
+	// Getter signatures
+	AllNumericLiteral() []antlr.TerminalNode
+	NumericLiteral(i int) antlr.TerminalNode
 
 	// IsCoordinateContext differentiates from other interfaces.
 	IsCoordinateContext()
@@ -5633,9 +6686,14 @@ type CoordinateContext struct {
 
 func NewEmptyCoordinateContext() *CoordinateContext {
 	var p = new(CoordinateContext)
-	p.CqlContext = NewCqlContext(nil, -1)
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
 	p.RuleIndex = CQLParserRULE_coordinate
 	return p
+}
+
+func InitEmptyCoordinateContext(p *CoordinateContext) {
+	p.CqlContext = NewCqlContext(nil, -1) // Jim super
+	p.RuleIndex = CQLParserRULE_coordinate
 }
 
 func (*CoordinateContext) IsCoordinateContext() {}
@@ -5644,7 +6702,6 @@ func NewCoordinateContext(parser antlr.Parser, parent antlr.ParserRuleContext, i
 	var p = new(CoordinateContext)
 
 	p.CqlContext = NewCqlContext(parent, invokingState)
-
 	p.parser = parser
 	p.RuleIndex = CQLParserRULE_coordinate
 
@@ -5684,34 +6741,35 @@ func (s *CoordinateContext) ExitRule(listener antlr.ParseTreeListener) {
 func (p *CQLParser) Coordinate() (localctx ICoordinateContext) {
 	localctx = NewCoordinateContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 64, CQLParserRULE_coordinate)
-
-	defer func() {
-		p.ExitRule()
-	}()
-
-	defer func() {
-		if err := recover(); err != nil {
-			if v, ok := err.(antlr.RecognitionException); ok {
-				localctx.SetException(v)
-				p.GetErrorHandler().ReportError(p, v)
-				p.GetErrorHandler().Recover(p, v)
-			} else {
-				panic(err)
-			}
-		}
-	}()
-
 	p.EnterOuterAlt(localctx, 1)
 	{
 		p.SetState(316)
 		p.Match(CQLParserNumericLiteral)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 	{
 		p.SetState(317)
 		p.Match(CQLParserNumericLiteral)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
 	}
 
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
 	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
 }
 
 func (p *CQLParser) Sempred(localctx antlr.RuleContext, ruleIndex, predIndex int) bool {

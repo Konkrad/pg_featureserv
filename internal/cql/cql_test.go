@@ -147,6 +147,13 @@ func TestTemporal(t *testing.T) {
 	checkCQL(t, "p > NOW()", "\"p\" > timestamp 'NOW'")
 }
 
+func TestPropertyNames(t *testing.T) {
+	checkCQL(t, `"eo:grid" = 'MGRS-01GBQ'`, `"eo:grid" = 'MGRS-01GBQ'`)
+	checkCQL(t, `"datetime" = 2023-08-01T00:00:00Z`, `"datetime" = timestamp '2023-08-01T00:00:00Z'`)
+	checkCQL(t, `"s2:datatake_id" = 'S2C_OPER_MSI_L1C_DS_2CPS_20250412T152944_S20250412T115421_N05.11'`, `"s2:datatake_id" = 'S2C_OPER_MSI_L1C_DS_2CPS_20250412T152944_S20250412T115421_N05.11'`)
+
+}
+
 func TestSyntaxErrors(t *testing.T) {
 	checkCQLError(t, "x y")
 	checkCQLError(t, "x == y")

@@ -19,7 +19,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/antlr/antlr4/runtime/Go/antlr"
+	"github.com/antlr4-go/antlr/v4"
 	log "github.com/sirupsen/logrus"
 )
 
@@ -99,13 +99,13 @@ func (l *CqlErrorListener) SyntaxError(recognizer antlr.Recognizer, offendingSym
 	l.msg = msg
 }
 
-func (l *CqlErrorListener) ReportAmbiguity(recognizer antlr.Parser, dfa *antlr.DFA, startIndex, stopIndex int, exact bool, ambigAlts *antlr.BitSet, configs antlr.ATNConfigSet) {
+func (l *CqlErrorListener) ReportAmbiguity(recognizer antlr.Parser, dfa *antlr.DFA, startIndex, stopIndex int, exact bool, ambigAlts *antlr.BitSet, configs *antlr.ATNConfigSet) {
 	l.errorCount += 1
 }
-func (l *CqlErrorListener) ReportAttemptingFullContext(recognizer antlr.Parser, dfa *antlr.DFA, startIndex, stopIndex int, conflictingAlts *antlr.BitSet, configs antlr.ATNConfigSet) {
+func (l *CqlErrorListener) ReportAttemptingFullContext(recognizer antlr.Parser, dfa *antlr.DFA, startIndex, stopIndex int, conflictingAlts *antlr.BitSet, configs *antlr.ATNConfigSet) {
 	l.errorCount += 1
 }
-func (l *CqlErrorListener) ReportContextSensitivity(recognizer antlr.Parser, dfa *antlr.DFA, startIndex, stopIndex, prediction int, configs antlr.ATNConfigSet) {
+func (l *CqlErrorListener) ReportContextSensitivity(recognizer antlr.Parser, dfa *antlr.DFA, startIndex, stopIndex, prediction int, configs *antlr.ATNConfigSet) {
 	l.errorCount += 1
 }
 
@@ -166,7 +166,7 @@ func getNodeText(node antlr.TerminalNode) string {
 
 // ========================================
 type CqlContext struct {
-	*antlr.BaseParserRuleContext
+	antlr.BaseParserRuleContext
 	// SQL fragment for the context subtree
 	sql string
 }
@@ -177,7 +177,7 @@ type SqlHolder interface {
 
 func NewCqlContext(parent antlr.ParserRuleContext, invokingStateNumber int) *CqlContext {
 	var p = new(CqlContext)
-	p.BaseParserRuleContext = antlr.NewBaseParserRuleContext(parent, invokingStateNumber)
+	p.BaseParserRuleContext = *antlr.NewBaseParserRuleContext(parent, invokingStateNumber)
 	return p
 }
 
